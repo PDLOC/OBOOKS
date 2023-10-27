@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+
+<body  ng-app="app" ng-controller="student-ctrl">
+
+	<div class="container">
+		<div class="card col-6 mx-auto mt-4 border-danger">
+			<div class="card-header text-center">Student - CRUD</div>
+			<form>
+				<div class="card-body">
+					<div class="mb-3">
+						<input type="text" ng-model="form.username" class="form-control" id="exampleInputEmail1" placeholder="UserId"
+							aria-describedby="emailHelp">
+					</div>
+					
+					<div class="mb-3">
+						<input type="text" ng-model="form.name" class="form-control" placeholder="Fullname" id="exampleInputPassword1">
+					</div>
+					<div class="mb-3">
+						<input type="number" ng-model="form.phone" class="form-control" placeholder="Phone" id="exampleInputPassword1">
+					</div>
+				
+				</div>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-center mb-3">
+					<button class="btn btn-primary me-md-2" type="button" ng-click="create()">Thêm</button>
+					<button class="btn btn-primary" type="button" ng-click="update()">Sửa</button>
+					<button class="btn btn-primary" type="button" ng-click="delete(form)">Xóa</button>
+					<button class="btn btn-primary" type="button" ng-click="reset()">Reset</button>
+				</div>
+			</form>
+		</div>
+		<div class="container mt-4">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						
+						<th scope="col">Fullname</th>
+						<th scope="col">Phone</th>
+
+						<th scope="col">Edit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="st in items">
+						<td>{{st.username}}</td>
+						<td>{{st.name}}</td>
+						<td>{{st.phone}}</td>
+						
+						<td><a ng-click="edit(st)" href="">Edit</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="/assets/js/student-ctrl.js"></script>
+</body>
+
+</html>
