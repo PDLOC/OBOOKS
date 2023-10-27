@@ -2,7 +2,7 @@
 	<a style="text-decoration: none;" class="font-black" th:href="@{/cart/view}">
 		<div class="card-body text-center fw-bold">
 			<i class="bi-cart-fill me-1 fs-5 "></i>
-			({{cart.count}}) x ${{cart.amount | number:2}}
+			({{cart.count}}) x {{cart.amount | number:0}} VNĐ
 		</div>
 	</a>
 </div>

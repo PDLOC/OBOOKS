@@ -20,9 +20,9 @@
 						<tr ng-repeat="item in cart.items">
 							<td>{{item.id}}</td>
 							<td>{{item.name}}</td>
-							<td>${{item.price | number:2}}</td>
+							<td>{{item.price | number:0}}</td>
 							<td><input ng-change="cart.saveToLocalStorage()" ng-model="item.qty" type="number" min="1" style="width:100px;"></td>
-							<td>${{item.qty*item.price | number:2}}</td>
+							<td>{{item.qty*item.price | number:0}}</td>
 							<td>
 								<button ng-click="cart.remove(item.id)" class="btn btn-danger">
 									<i class="fa-solid fa-trash"></i> Clear

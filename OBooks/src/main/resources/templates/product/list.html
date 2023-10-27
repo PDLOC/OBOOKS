@@ -12,8 +12,8 @@
 			</div>
 			<div class="card-body">
 				<h5 class="card-title text-dark">[[${p.name}]]</h5>
-				<h5 class="text-center text-primary">
-			$[[${p.price}]]
+				<h5 class="text-center text-primary" th:utext="${p.getFormattedPrice}">
+			
 
 				</h5>
 			</div>

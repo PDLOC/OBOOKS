@@ -1,6 +1,7 @@
 package com.obooks.entity;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -41,4 +42,10 @@ public class Product  implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	List<OrderDetail> orderDetails;	
+	
+	
+	public String getFormattedPrice() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,### VNĐ");
+        return decimalFormat.format(price);
+    }
 }
