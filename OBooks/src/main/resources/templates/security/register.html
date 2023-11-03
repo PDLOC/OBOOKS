@@ -1,0 +1,70 @@
+<html xmlns:th="http://wwww.thymeleaf.org"
+	th:replace="~{/layout/index::dynamic(~{::main})}">
+<main class="mt-3">
+	<div class="container-fluid ps-md-0">
+		<div class="row g-0  ">
+			<div class="d-none d-md-flex col-lg-3 bg-image"></div>
+			<div class="col-md-3 col-lg-6">
+				<div class="login d-flex align-items-center">
+					<div class="col-md-12 col-lg-12 ">
+						<h3 class="login-heading mb-4 text-center">
+							<div class="text-center mb-3 fw-bolder">Register</div>
+
+						</h3>
+						<!-- Sign In Form -->
+						<form th:action="@{/security/register/create}" th:object="${acc}" method="post"
+							class="col-sm-12 ms-5 mx-auto">
+							<div class="form-floating mb-3 ">
+								<input type="text" class="form-control" name="username"
+									id="floatingInput" th:field="*{username}" placeholder="name">
+								<label for="floatingInput">Username</label>
+								<div class="mt-3 text-danger fw-bolder"
+									th:if="${#fields.hasErrors('username')}"
+									th:errors="*{username}"></div>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" name="fullname" class="form-control"
+									id="floatingFullname" th:field="*{fullname}"
+									placeholder="Fullname"> <label for="floatingFullname">Fullname</label>
+								<div class="mt-3 text-danger fw-bolder"
+									th:if="${#fields.hasErrors('fullname')}"
+									th:errors="*{fullname}"></div>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="email" name="email" class="form-control"
+									id="floatingEmail" th:field="*{email}" placeholder="Email">
+								<label for="floatingEmail">Email</label>
+								<div class="mt-3 text-danger fw-bolder"
+									th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="password" name="password" class="form-control"
+									id="floatingPassword" th:field="*{password}"
+									placeholder="Password"> <label for="floatingPassword">Password</label>
+								<div class="mt-3 text-danger fw-bolder"
+									th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}"></div>
+							</div>
+
+							<div class="d-grid">
+								<b class="text-danger"><i>[[${message}]]</i></b>
+								<button 
+									class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2">Register</button>
+								<div class="text-center">
+									<a th:href="@{/security/login/form}" class="text-body"><i
+										class="fas fa-long-arrow-alt-left me-2"></i>Back to login</a>
+								</div>
+							</div>
+
+						</form>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--	</form>-->
+</main>
+
+</html>
