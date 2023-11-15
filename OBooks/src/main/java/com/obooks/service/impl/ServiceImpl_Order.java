@@ -1,5 +1,6 @@
 package com.obooks.service.impl;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class ServiceImpl_Order implements Service_Order{
 		Order order = mapper.convertValue(orderData, Order.class);
 		dao.save(order);
 		
-		TypeReference<List<OrderDetail>> type = new TypeReference<>() {};
+		TypeReference<List<OrderDetail>> type = new TypeReference<List<OrderDetail>>() {};
 		List<OrderDetail> details = mapper.convertValue(orderData.get("orderDetails"), type)
 				.stream().peek(d->d.setOrder(order)).collect(Collectors.toList());
 		ddao.saveAll(details);
