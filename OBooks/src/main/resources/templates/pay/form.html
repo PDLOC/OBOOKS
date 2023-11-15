@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html th:xmlns="http://wwww.thymeleaf.org"
+	th:replace="~{/layout/index::dynamic(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="vendor/swiper/swiper.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+</head>
+<body>
+	<main>
+		<!-- Overlay panel -->
+		<div class="body-overlay"></div>
+		<!-- Left panel -->
+		<div id="panel-left"></div>
+		<div class="page page--main" data-page="buy">
+			<!-- HEADER -->
+			<header class="header header--fixed">
+				<div class="header__inner"></div>
+			</header>
+
+			<!-- PAGE CONTENT -->
+			<div
+				class="page__content page__content--with-header page__content--with-bottom-nav">
+				<h2 class="page__title">Buy Solona</h2>
+				<div class="fieldset">
+					<div class="form">
+						<form id="Form" method="post" action="checkout.html">
+							<div class="form__row d-flex align-items-center justify-space">
+								<input type="text" name="Text" value=""
+									class="form__input form__input--15 border-bottom"
+									placeholder="0.05" />
+								<div class="form__coin-icon">
+									<img src="/assets/images/solana.png" alt="" title="" /><span>SOL</span>
+								</div>
+							</div>
+							<div class="form__coin-total">$ 53.53</div>
+						</form>
+					</div>
+				</div>
+				<h2 class="page__title">Select Payment</h2>
+				<div class="fieldset">
+
+
+					<div class="radio-option radio-option--full">
+						<input type="radio" name="payment" id="op5" value="creditcard"
+							checked /><label for="op5">Credit Card</span></label>
+					</div>
+					<div class="option-hidden show" id="show-credit-cards">
+
+						<h4 class="pb-10">Existing Credit Cards</h4>
+						<div class="sub-fieldset">
+							<div class="card-selector">
+								<input type="radio" name="excard" id="c1" value="1" /><label
+									for="c1">Visa Credit Card <span>xxxx 6589</span></label>
+							</div>
+							<div class="card-selector mb-0">
+								<input type="radio" name="excard" id="c2" value="2" /><label
+									for="c2">Master Card <span>xxxx 5623</span></label>
+							</div>
+						</div>
+						<h4 class="pb-10">Or Add New Card</h4>
+						<div class="sub-fieldset border border-dark">
+							<div class="form__row">
+								<input type="text" name="CName" value=""
+									class="form__input required border-bottom"
+									placeholder="Cardholder Name" />
+							</div>
+							<div class="form__row">
+								<input type="text" name="CNumber" value=""
+									class="form__input required border-bottom"
+									placeholder="Cardholder Number" />
+							</div>
+							<div class="form__row d-flex align-items-center justify-space">
+								<input type="date" name="date" value=""
+									class="form__input form__input--23 required border-bottom"
+									placeholder="Exp Date" /> <input type="text" name="cvc"
+									value=""
+									class="form__input form__input--23 required border-bottom ms-3"
+									placeholder="CVC" />
+							</div>
+							<div class="form__row mb-0">
+								<div class="checkbox-simple">
+									<input type="checkbox" name="savecard" id="sc" value="savecard" /><label
+										for="sc">Save Credit Card</span></label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<button type="button" class="btn btn-success btn-lg"
+						onclick="transferSol()">TRANSFER SOLANA</button>
+					<button type="button" class="btn btn-success btn-lg"
+						onclick="connectWallet()">CONNECT</button>
+
+				</div>
+
+
+
+			</div>
+
+
+
+
+		</div>
+		<!-- PAGE END -->
+
+		<!-- Social Icons Popup -->
+		<div id="popup-social"></div>
+
+		<!-- Alert -->
+		<div id="popup-success"></div>
+
+		<!-- Notifications -->
+		<div id="popup-notifications"></div>
+
+		<script src="vendor/jquery/jquery-3.5.1.min.js"></script>
+		<script src="vendor/jquery/jquery.validate.min.js"></script>
+		<script src="vendor/swiper/swiper.min.js"></script>
+		<script src="js/swiper-init-swipe.js"></script>
+		<script src="js/jquery.custom.js"></script>
+		<script src="js/header-scroll.js"></script>
+
+		<script>
+      
+		//*========== [CONNECT WALLET] ===========
+	      let publicKey;
+
+	      //1: Auto connect
+	      (async () => {
+	         await window.phantom.solana.connect();
+	         publicKey = window.phantom.solana.publicKey.toBase58(); //[1,1,1,1]
+	         console.log(publicKey);
+	      })();
+
+
+	      //2: Manual connect
+	      const connectWallet = async () => {
+	         await window.phantom.solana.connect();
+
+	         publicKey = window.phantom.solana.publicKey.toBase58(); //[1,1,1,1]
+	         console.log(publicKey);
+	      }
+
+	      //========== [MINT NFT PUBLIC KEY] ==========
+	      const SHYFT_API_KEY = "FvtQ-DsN9H3YDIYw";
+
+	      const toTransaction = (encodedTransaction) => solanaWeb3.Transaction.from(Uint8Array.from(atob(encodedTransaction), c => c.charCodeAt(0)));
+
+	      //https://api.shyft.to/sol/v1
+	      const mintNft = async () => {
+	         var myHeaders = new Headers();
+	         myHeaders.append("x-api-key", SHYFT_API_KEY);
+
+	         const fileInput = document.querySelector("#fileInput");
+
+	         var formdata = new FormData();
+	         formdata.append("network", "devnet");
+	         formdata.append("wallet", publicKey);
+	         formdata.append("name", "FPOLY NFT");
+	         formdata.append("symbol", "FPL");
+	         formdata.append("description", "FPL Token makes Web3 so easy!");
+	         formdata.append("attributes", '[{"trait_type":"dev power","value":"over 900"}]');
+	         formdata.append("external_url", "https://shyft.to");
+	         formdata.append("max_supply", "1");
+	         formdata.append("royalty", "5");
+	         formdata.append("file", fileInput.files[0]);
+	         formdata.append("data", fileInput.files[0]);
+	         formdata.append("receiver", publicKey);
+	         formdata.append('service_charge', `{ "receiver": "7TfMNSZ2UHznQBmKF3QJG7VpiF4kKR6Pc9UaFQVfy5zs",  "amount": 0.01}`);
+
+	         var requestOptions = {
+	            method: 'POST',
+	            headers: myHeaders,
+	            body: formdata,
+	            redirect: 'follow'
+	         };
+
+	         fetch("https://api.shyft.to/sol/v1/nft/create_detach", requestOptions)
+	         .then(async response => {
+	            let res = await response.json();
+	            let transaction = toTransaction(res.result.encoded_transaction);
+
+	            const signedTransaction = await window.phantom.solana.signTransaction(transaction);
+	            const connection = new solanaWeb3.Connection("https://api.devnet.solana.com");
+	            const signature = await connection.sendRawTransaction(signedTransaction.serialize());
+
+	            console.log("TRANSACTION CONFIRMED!!!");
+	         })
+	         .catch(error => console.log('error', error));
+	      }
+
+	      //MINT PRIV KEY
+	      const PRIV_KEY_WALLET = "4XMJ5M6wopsvVmBMC8jpShcVETUAAbF2aVKy4ZtqxXDmHUgDcywGhy817vVN2dwJqU6crhWpsoHVtcFAAPRtkGNc";
+	      const mintNftPriv = async () => {
+	         var myHeaders = new Headers();
+	         myHeaders.append("x-api-key", SHYFT_API_KEY);
+
+	         const fileInput = document.querySelector("#fileInput");
+
+	         var formdata = new FormData();
+	         formdata.append("network", "devnet");
+	         formdata.append("private_key", PRIV_KEY_WALLET);
+	         formdata.append("name", "FPOLY NFT");
+	         formdata.append("symbol", "FPL");
+	         formdata.append("description", "FPL Token makes Web3 so easy!");
+	         formdata.append("attributes", '[{"trait_type":"dev power","value":"over 900"}]');
+	         formdata.append("external_url", "https://shyft.to");
+	         formdata.append("max_supply", "1");
+	         formdata.append("royalty", "5");
+	         formdata.append("file", fileInput.files[0]);
+	         formdata.append("data", fileInput.files[0]);
+	         formdata.append("receiver", publicKey);
+	         formdata.append('service_charge', `{ "receiver": "7TfMNSZ2UHznQBmKF3QJG7VpiF4kKR6Pc9UaFQVfy5zs",  "amount": 0.01}`);
+
+	         var requestOptions = {
+	            method: 'POST',
+	            headers: myHeaders,
+	            body: formdata,
+	            redirect: 'follow'
+	         };
+
+	         fetch("https://api.shyft.to/sol/v1/nft/create", requestOptions)
+	         .then(async response => {
+	            console.log("TRANSACTION CONFIRMED!!!");
+	         })
+	         .catch(error => console.log('error', error));
+	      }
+
+	      //=========== [TRANSFER SOLANA] ==========
+	      const transferSol = async () => {
+	         var myHeaders = new Headers();
+	         myHeaders.append("x-api-key", SHYFT_API_KEY);
+	         myHeaders.append("Content-Type", "application/json");
+
+	         var raw = JSON.stringify({
+	         "network": "devnet",
+	         "from_address": "BZBVGqPj1dVPenWsHZQNmq3hXb2MeLn2HqiYEd3QXqXf", //Nguoi gui
+	         "to_address": "2YwqccssDUBJ1mUgNKK4mT3r5iAHwSx7tdL6e7pcTVED", //Nguoi nhan
+	         "amount": 0.1,
+	         });
+
+	         var requestOptions = {
+	            method: 'POST',
+	            headers: myHeaders,
+	            body: raw,
+	            redirect: 'follow'
+	         };
+
+	         fetch("https://api.shyft.to/sol/v1/wallet/send_sol", requestOptions)
+	         .then(async response => {
+	            let res = await response.json();
+	            let transaction = toTransaction(res.result.encoded_transaction);
+
+	            const signedTransaction = await window.phantom.solana.signTransaction(transaction);
+	            const connection = new solanaWeb3.Connection("https://api.devnet.solana.com");
+	            const signature = await connection.sendRawTransaction(signedTransaction.serialize());
+
+	            console.log("TRANSFER SUCCESSFULLY!!!");
+	         })
+	         .then(result => console.log(result))
+	         .catch(error => console.log('error', error));
+	      }
+   </script>
+
+	</main>
+</body>
+</html>
