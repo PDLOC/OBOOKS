@@ -2,34 +2,47 @@
 <html xmlns:th="http://wwww.thymeleaf.org" th:fragment="dynamic(main)">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Index</title>
-	 <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-		integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script src="https://kit.fontawesome.com/0e7cad46fe.js" crossorigin="anonymous"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-	<script src="https://code.jquery.com/jquery-3.6.0.js"
-		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"
-		integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<link th:href="@{/assets/fontawesome-free-5.15.4-web/css/all.css}" rel="stylesheet">
-		<link rel="stylesheet" th:href="@{|/assets/css/login.css|}">
-	<link rel="stylesheet" th:href="@{|/assets/css/style.css|}">
+<meta charset="UTF-8">
+<title>Index</title>
+<script
+	src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+	integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://kit.fontawesome.com/0e7cad46fe.js"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"
+	integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link th:href="@{/assets/fontawesome-free-5.15.4-web/css/all.css}"
+	rel="stylesheet">
+<link rel="stylesheet" th:href="@{|/assets/css/login.css|}">
+<link rel="stylesheet" th:href="@{|/assets/css/style.css|}">
 <!--	<link rel="stylesheet" th:href="@{|/assets/css/pay.css|}">-->
-	<link rel="stylesheet" th:href="@{|/assets/css/flag.min.css|}">
+<link rel="stylesheet" th:href="@{|/assets/css/flag.min.css|}">
 
-	<base href="/" />
+<base href="/" />
 </head>
 
-<body class="container" ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+<body class="container" ng-app="shopping-cart-app"
+	ng-controller="shopping-cart-ctrl">
 
 
 	<div class="row">
@@ -46,12 +59,119 @@
 		<aside class="col-sm-3 pe-0 mt-3">
 			<div th:replace="/layout/_cart-info.html"></div>
 			<div th:replace="/layout/_category.html"></div>
-			
+
 		</aside>
 	</div>
-	<footer class="row pt-5" style="background-color: white;">
-		<div class="bg-dark text-white rounded-0 text-center">
-			<h3 class="py-3 mb-0">FPT Polytechnic &copy; 2023.All rights reserved</h3>
+	<footer>
+		<div class="ma-footer-static">
+			<div class="footer-static">
+				<div class="container">
+					<div class="container-inner">
+						<div class="row">
+							<style>
+.footer-image-container {
+	margin: auto;
+}
+</style>
+							<div class="col-md-4">
+								<div style="border-right: 1px solid #cecece;">
+									<div>
+										<a href="/"
+											class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none  ">
+											<img th:src="@{|/assets/banner/obu.jpg|}" class="d-block"
+											width="100px" alt="...">
+										</a>
+
+										<div class="col-sm-12 col-md-12 col-xs-12 address-footer"
+											style="font-size: 13px; padding-top: 5px;">OBOOKS nhận
+											đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ trợ đặt
+											mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
+											Thống OBOOKS trên toàn quốc.</div>
+
+									</div>
+
+
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div class="row">
+									<div class="col-sm-6 col-md-4 col-sms-6 col-smb-12">
+										<div class="footer-static-title">
+											<h3>DỊCH VỤ</h3>
+										</div>
+										<div class="footer-static-content" >
+											<ul >
+												<li style="list-style: none "><a
+													href="https://www.fahasa.com/dieu-khoan-su-dung" style="text-decoration: none;">Điều
+														khoản sử dụng</a></li>
+												<li style="list-style: none"><a href="https://www.fahasa.com/chinh-sach-bao-mat" style="text-decoration: none;">Chính
+														sách bảo mật thông tin cá nhân</a></li>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/chinh-sach-bao-mat-thanh-toan" style="text-decoration: none;">Ch
+														&iacute;nh s &aacute;ch bảo mật thanh toán</a></li>
+												<li style="list-style: none"><a href="https://www.fahasa.com/gioi-thieu-fahasa" style="text-decoration: none;">Giới
+														thiệu Obooks</a></li>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/he-thong-trung-tam-nha-sach" style="text-decoration: none;">Hệ
+														thống trung t &acirc;m - nh &agrave;s &aacute;ch</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-4 col-sms-6 col-smb-12">
+										<div class="footer-static-title">
+											<h3>Hỗ trợ</h3>
+										</div>
+										<div>
+											<ul>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/doi-tra-hang" style="text-decoration: none;">Chính sách
+														đổi - trả - hoàn tiền</a></li>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/chinh-sach-bao-hanh-boi-hoan" style="text-decoration: none;">Chính
+														sách bảo hành - bồi hoàn</a></li>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/phuong-thuc-van-chuyen" style="text-decoration: none;">Chính
+														sách vận chuyển</a></li>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/chinh-sach-khach-si" style="text-decoration: none;">Chính
+														sách khách sỉ</a></li>
+
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/huong-dan-thanh-toan-va-xuat-hd" style="text-decoration: none;">Phương
+														thức thanh to &aacute;n và xuất HĐ</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-4 col-sms-6 col-smb-12">
+										<div class="footer-static-title">
+											<h3>T &agrave;i khoản của t &ocirc;i</h3>
+										</div>
+										<div class="footer-static-content">
+											<ul>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/index.php/customer/account/login" style="text-decoration: none;">Đăng
+														nhập/Tạo mới t &agrave;i khoản</a></li>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/index.php/customer/address" style="text-decoration: none;">Thay
+														đổi địa chỉ kh &aacute;ch h &agrave;ng</a></li>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/index.php/customer/account" style="text-decoration: none;">Chi
+														tiết t &agrave;i khoản</a></li>
+												<li style="list-style: none"><a
+													href="https://www.fahasa.com/index.php/sales/order/history" style="text-decoration: none;">Lịch
+														sử mua h &agrave;ng</a></li>
+											</ul>
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
 		</div>
 	</footer>
 
