@@ -25,41 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 	<!-- Chart js library Edge-->
 </head>
-<body class="container" style="background-color:#F1F1F1 " ng-app="admin-app">
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark row">
-    <div class="container-fluid">
-		<img src="/assets/banner/obu.jpg" class="d-block  " width="100px" alt="...">
-        <a class="navbar-brand me-2 ms-4" href="/" style="font-size: 16px">Trang chủ</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!--	<li class="nav-item">
-            	<a class="nav-link" href="#!summary">Summary</a>
-            </li>-->
-            <li class="nav-item">
-            	<a class="nav-link" href="#!product">Sản phẩm</a>
-            </li>
-            <li class="nav-item">
-            	<a class="nav-link" href="#!account">Tài khoản</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#!authorize">Quyền hạn</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/security/logoff">Đăng xuất</a>
-            </li>
-          </ul>
-          <!-- <ul class="navbar-nav d-flex mb-0 text-white">
-            <li class="nav-item me-0" th:if="${#request.remoteUser}">
-                <a class="nav-link" href="#">Welcome [[${#request.remoteUser}]]</a>
-            </li>
-          </ul> -->
-        </div>
-      </div>
-     </nav>
+<body class="container-fluid p-0 m-0" style="background-color:#F1F1F1 " ng-app="admin-app">
      <ng-view class="row" style="background-color:white "></ng-view>
     <footer class="row pt-3" style="background-color:white">
 		<div class="bg-dark text-white rounded-0 text-center">
@@ -67,6 +33,7 @@
 		</div>
 	</footer>
 	<script src="/assets/admin/admin-app.js"></script>
+    <script src="/assets/admin/doan/product-ctrl.js"></script>
 	<script src="/assets/admin/product/product-ctrl.js"></script>
 	<script src="/assets/admin/authority/authority-ctrl.js"></script>
 	<script src="/assets/admin/account/account-ctrl.js"></script>
