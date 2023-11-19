@@ -2,6 +2,7 @@ package com.obooks.entity;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -47,5 +48,10 @@ public class Product  implements Serializable{
 	public String getFormattedPrice() {
         DecimalFormat decimalFormat = new DecimalFormat("###,### Đ");
         return decimalFormat.format(price);
+    }
+	
+	public String getFormattedCreatedate() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return formatter.format(createDate);
     }
 }

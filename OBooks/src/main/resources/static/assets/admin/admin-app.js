@@ -10,10 +10,14 @@ app.config(function($routeProvider) {
 			templateUrl: "/assets/admin/account/index.html",
 			controller: "account-ctrl"
 		})
-   .when("/thongke",{
-        templateUrl:"/assets/admin/summary/index.html",
-        controller: "summary-ctrl"
-    })
+		.when("/thongke", {
+			templateUrl: "/assets/admin/summary/index.html",
+			controller: "summary-ctrl"
+		})
+		.when("/order", {
+			templateUrl: "/assets/admin/order/index.html",
+			controller: "order-ctrl"
+		})
 		.when("/authorize", {
 			templateUrl: "/assets/admin/authority/index.html",
 			controller: "authority-ctrl"

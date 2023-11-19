@@ -137,7 +137,7 @@ app.controller("account-ctrl",function($scope,$http,$location){
     $scope.imageChanged = function(files){
 		var data = new FormData();
 		data.append('file',files[0]);
-		$http.post('/rest/upload/avatar',data,{
+		$http.post('/rest/upload/images',data,{
 			transformRequest:angular.identity,
 			headers:{'Content-Type':undefined}
 		}).then(resp=>{

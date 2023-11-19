@@ -3510,4 +3510,3 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Đang kinh doa
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mã loại, FK' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Products', @level2type=N'COLUMN',@level2name=N'CategoryId'
 GO
-

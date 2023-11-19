@@ -1,9 +1,6 @@
 <html xmlns:th="http://wwww.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::main})}">
 <main class="row  row-cols-1  g-4 mt-1 ">
-	<div th:each="p:${items.content}" class="col-sm-3 ">
-	
-
-
+	<div th:each="p:${items.content}" class="col-sm-4 ">
 		<div class="card  text-center poly-item rounded-0 ms-4">
 			<div class="card-body">
 				<a th:href="@{|product/detail/${p.id}|}">
@@ -13,8 +10,6 @@
 			<div class="card-body">
 				<h5 class="card-title text-dark">[[${p.name}]]</h5>
 				<h5 class="text-center text-primary" th:utext="${p.getFormattedPrice}">
-			
-
 				</h5>
 			</div>
 			<div class="card-footer ">
@@ -26,8 +21,6 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 	<!-- Pagination-->
 	<nav aria-label="Page navigation example">
