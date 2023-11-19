@@ -48,6 +48,53 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="container">
+			<div class="card-body mt-5">
+				<div th:object="${item}" class="row">
+					<div class="col-lg-6 col-md-5 col-sm-6 col-5">
+						<div class="pro-img-details text-center">
+							<img th:src="@{|/assets/images/*{image}|}" width="100%" alt="">
+						</div>
+						<!-- <div class="pro-img-list">
+							<a href="#"> <img th:src="@{|/assets/images/*{image}|}" alt="">
+							</a> <a href="#"> <img th:src="@{|/assets/images/*{image}|}" alt="">
+							</a> <a href="#"> <img th:src="@{|/assets/images/*{image}|}" alt="">
+							</a> <a href="#"> <img th:src="@{|/assets/images/*{image}|}" alt="">
+							</a>
+						</div> -->
+					</div>
+					<div
+						class="col-sm-6 col-6 border border-black shadow-sm rounded-3 ">
+						<h4 class="box-title mt-2" th:utext="*{name}"></h4>
+						<hr>
+						<h2 class="mt-4 text-danger fw-bolder">[[${item.getFormattedPrice}]]</h2>
+						<h3 class="box-title mt-4 text-success fw-bolder">Ưu đãi
+							thêm:</h3>
+						<ul class="list-unstyled">
+							<li><i class="fa fa-check text-success"></i> [[*{createDate}]]</li>
+							<li><i class="fa fa-check text-success"></i> [[*{category.name}]]</li>
+						</ul>
+						<button class="btn btn-danger btn-rounded mr-1 mt-4 mb-4"
+							data-toggle="tooltip" title="" data-original-title="Add to cart">
+							Thêm vào giỏ hàng</button>
+						<!-- <button class="btn btn-danger btn-rounded mt-4 mb-4">Mua ngay</button> -->
+					</div>
+					<div class="card my-4">
+						<div class="card-body">
+							<h3>CÙNG LOẠI</h3>
+							<hr>
+							<ul style="list-style: none; list-style-type:'★ ';">
+								<li th:each="p:*{category.products}">
+								<a style="text-decoration: none; font-weight: bolder; color: #146c43;" th:href="@{|/product/detail/${p.id}}" th:text="${p.name}"></a>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </main>
 
 </html>
