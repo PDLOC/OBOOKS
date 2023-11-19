@@ -1,0 +1,150 @@
+<style>
+.card{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.card:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.summaryInfo .col-md-3 .card{
+    color: whitesmoke;
+    position: relative;
+}
+.summaryInfo .col-md-3 i{
+    width:60px;
+    position:absolute;
+    right:0;
+    height:100%;
+    line-height: 100px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    background-color: rgba(0,0,0,.1);
+}
+#secondRow,.summaryInfo .col-md-3 .card{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+#secondRow:hover,.summaryInfo .col-md-3 .card:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+/*Edit for same height*/
+
+.thirdRowContent .col-md-3,.thirdRowContent .col-md-4,.thirdRowContent .col-md-5,
+.firstRowContent .col-md-4, .secondRowContent .col-md-6{
+    display:flex;
+}
+.thirdRowContent .card,.firstRowContent .card,.secondRowContent .card{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+</style>
+<div class="col-sm mt-2">
+	<div class="summaryInfo row">
+	    <div class="col-md-3 ">
+	        <div class="card bg-success rounded-0 mb-1">
+	            <h2 class="fw-bold ps-2 mt-1 mb-0">{{firstRow.todayVe}}</h2>
+	            <div class="ps-2 mt-1">Vé đã mua hôm nay :</div>
+	            <h4 class="ps-2 mt-1">Tổng: {{firstRow.totalVe}}</h4>
+	            <i class="fas fa-shopping-cart"></i>
+	        </div>
+	    </div>
+	    <div class="col-md-3 ">
+	        <div class="card bg-info rounded-0 mb-1 ">
+	     
+	            <div class="ps-2 mt-1"> <h1>Tổng phim <h1></div>
+	            <h3 class="ps-2 mt-1">Tổng: {{firstRow.totalPhim}}</h3>
+	            <i class="fas fa-eye"></i>
+	        </div>
+	    </div>
+	    <div class="col-md-3 ">
+	        <div class="card bg-warning rounded-0 mb-1">
+	            <h2 class="fw-bold ps-2 mt-1 mb-0">{{firstRow.todayIncome | number:0}}</h2>
+	            <div class="ps-2 mt-1">Đã thanh toán</div>
+	            <h4 class="ps-2 mt-1">Tổng: {{firstRow.totalIncome | number:0}}</h4>
+	            <i class="fas fa-money-bill"></i>
+	        </div>
+	    </div>
+	    <div class="col-md-3 ">
+	        <div class="card bg-danger rounded-0">
+	            <h2 class="fw-bold ps-2 mt-1 mb-0">{{firstRow.totalCustomer}}</h2>
+	            <div class="ps-2 mt-1">Tổng khách hàng</div>
+	            <h4 class="ps-2 mt-1">Tổng tài khoản: {{firstRow.totalAccount}}</h4>
+	            <i class="fas fa-users"></i>
+	        </div>
+	    </div>
+	</div>
+	
+	<!-- Second row content -->
+	<div class="secondRowContent row">
+		<div class="col-12 mt-2">
+	         <div class="card border-0 mb-2 col-6">
+	             <div class="card-header bg-danger-subtle border-0">
+	                 <h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+	                     Doanh thu VNĐ
+	                 </h5>
+	                 <small class="d-block">Trong  7 Ngày</small>
+	             </div>
+	             <div class="card-body">
+	                 <canvas id="myLineChartRevenue"></canvas>
+	             </div>
+	         </div>
+	     </div>
+	   
+	</div>
+
+	<!-- Fourth Row content -->
+	<div class="forthRowContent row mt-3">
+		<div class="col mt-2">
+	         <div class="card border-0 mb-2">
+	         	<div class="card-header bg-light border-0">
+	                 <h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+	                     Top 10 Phim xem nhiều
+	                 </h5>
+	                 <small class="d-block">Tổng</small>
+	             </div>
+	             <div class="card-body">
+	                 <canvas id="myBarChartTop10Phim"></canvas>
+	             </div>
+	         </div>
+	     </div>
+	</div>
+	<!-- Fourth Row content -->
+	<div class="fifthRowContent row">
+		<div class="col mt-2">
+	         <div class="card border-0 mb-2">
+	         	<div class="card-header bg-light border-0">
+	                 <h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+	                     Top Khách hàng mua vé
+	                 </h5>
+	                 <small class="d-block">Tổng</small>
+	             </div>
+	             <div class="card-body">
+	                 <table class="table table-bordered" id="tableTopCustomer">
+	                 	<thead>
+	                 		<tr>
+	                 			<th>#</th>
+	                 			<th>Mã tài khoản</th>
+	                 			<th>Họ và tên</th>
+	                 			<th>Email</th>
+	                 			
+	                 			<th>Tổng tiền (VNĐ)</th>
+	                 		</tr>
+	                 	</thead>
+	                 	<tbody>
+	                 		<tr ng-repeat="c in fifRowContent">
+	                 			<th>{{$index+1}}</th>
+	                 			<th><img ng-src="/assets/Images/{{c[3]}}" class="rounded-circle me-2" height="60px" width="60px">{{c[0]}}</th>
+	                 			<th>{{c[1]}}</th>
+	                 			<th>{{c[2]}}</th>
+	                 		
+	                 			<th class="text-end">{{c[4]|number:0}} VNĐ</th>
+	                 		</tr>
+	                 	</tbody>
+	                 </table>
+	             </div>
+	         </div>
+	     </div>
+	</div>
+</div>

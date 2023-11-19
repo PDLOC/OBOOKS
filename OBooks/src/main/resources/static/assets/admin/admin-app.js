@@ -10,7 +10,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/assets/admin/account/index.html",
 			controller: "account-ctrl"
 		})
-
+   .when("/thongke",{
+        templateUrl:"/assets/admin/summary/index.html",
+        controller: "summary-ctrl"
+    })
 		.when("/authorize", {
 			templateUrl: "/assets/admin/authority/index.html",
 			controller: "authority-ctrl"
@@ -20,7 +23,7 @@ app.config(function($routeProvider) {
 			controller: "authority-ctrl"
 		})
 		.otherwise({
-			templateUrl: "/assets/admin/thongke/index.html",
-			controller: "thongke-ctrl"
+			templateUrl: "/assets/admin/summary/index.html",
+			controller: "summary-ctrl"
 		})
 })
