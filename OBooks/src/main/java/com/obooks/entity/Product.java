@@ -45,7 +45,7 @@ public class Product  implements Serializable{
 	
 	
 	public String getFormattedPrice() {
-        DecimalFormat decimalFormat = new DecimalFormat("###,### VNĐ");
+        DecimalFormat decimalFormat = new DecimalFormat("###,### Đ");
         return decimalFormat.format(price);
     }
 }
