@@ -5,7 +5,6 @@
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
      <b><i class="fa-solid fa-filter me-2"></i></b> [[#{sidebar.sortBy}]]
       </button>
-  </button>
   <ul class="dropdown-menu">
     <li> <a th:href="@{|product/list?cid=${cateID}&sortBy=priceDown|}" class="dropdown-item list-group-item-action"><b><i class="fa-solid fa-arrow-down-9-1 me-2"></i></b>[[#{sidebar.highest}]]</a></li>
     <li><a th:href="@{|product/list?cid=${cateID}&sortBy=priceUp|}" class="dropdown-item list-group-item-action"><b><i class="fa-solid fa-arrow-up-1-9 me-2"></i></b>[[#{sidebar.lowest}]]</a></li>

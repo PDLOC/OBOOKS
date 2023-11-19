@@ -41,108 +41,148 @@
 
 <body ng-app="shopping-cart-app"
 	ng-controller="shopping-cart-ctrl">
-	<div class="container row mx-auto">
+	<div class="container-fluid m-0 p-0 border border-white mb-3 row mx-auto">
 		<div th:replace="/layout/_menu.html"></div>
 	</div>
 	<div class="container row mx-auto">
 		<div th:replace="/layout/_header"></div>
 	</div>
-	<div class="container row mx-auto" style="background-color: white; min-height: 1000px;">
-		<article class="col-sm-9 ps-0">
-			<div th:replace="/layout/_sortBy.html"></div>
+	<div class="container-fluid m-0 p-0 row mx-auto" style="background-color: white; min-height: 1000px;">
+		<aside class="container-fluid m-0 p-0 col-sm-2 pe-0 mt-3">
+			<div th:replace="/layout/_category.html"></div>
+		</aside>
+		<article class="col-sm-10 ps-0">
 			<div th:replace="${main}"></div>
 		</article>
-		<aside class="col-sm-3 pe-0 mt-3">
-			<div th:replace="/layout/_category.html"></div>
-
-		</aside>
 	</div>
 	<hr>
-	<footer class="my-4 mx-auto">
-		<div class="ma-footer-static">
-			<div class="footer-static">
-				<div class="container">
-					<div class="container-inner">
-						<div class="row">
-							<div class="col-md-4">
-								<div style="border-right: 1px solid #cecece;">
-									<div>
-										<a href="/"
-											class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-											<img th:src="@{|/assets/banner/obu.jpg|}" class="d-block"
-											width="100px" alt="...">
-										</a>
+	<!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container-fluid m-0 p-0">
 
-										<div class="col-sm-12 col-md-12 col-xs-12 address-footer"
-											style="font-size: 13px; padding-top: 5px;">OBOOKS nhận
-											đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ trợ đặt
-											mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ
-											Thống OBOOKS trên toàn quốc.</div>
+  <footer class="bg-white text-center text-lg-start text-dark">
+    <!-- Grid container -->
+    <div class="m-0 p-2">
+      <!--Grid row-->
+      <div class="row my-2">
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4 mb-md-0 me-3">
 
-									</div>
+          <div class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto" style="width: 150px; height: 150px;">
+            <img src="/assets/banner/obu.jpg" height="200px" width="200px" alt=""
+                 loading="lazy" />
+          </div>
 
+          <p class="text-center">Tiếp nối đam mê cho những người mê sách cũ .<br> 
+          <span style="
+           font-family: sans-serif;
+           background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;">OBOOKS trạm lưu trữ kỷ niệm<span></p>
 
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="row justify-content-center">
-									<div class="col-sm-6 col-md-4 col-sms-6 col-smb-12">
-										<div class="footer-static-title">
-											<h3>Dịch vụ</h3>
-										</div>
-										<div class="footer-static-content">
-											<ul>
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/dieu-khoan-su-dung"
-													style="text-decoration: none;">Điều khoản sử dụng</a></li>
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/chinh-sach-bao-mat"
-													style="text-decoration: none;">Chính sách bảo mật thông
-														tin cá nhân</a></li>
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/chinh-sach-bao-mat-thanh-toan"
-													style="text-decoration: none;">Chính sách thanh toán</a></li>
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/gioi-thieu-fahasa"
-													style="text-decoration: none;">Giới thiệu Obooks</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-4 col-sms-6 col-smb-12">
-										<div class="footer-static-title">
-											<h3>Hỗ trợ</h3>
-										</div>
-										<div>
-											<ul>
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/doi-tra-hang"
-													style="text-decoration: none;">Chính sách đổi - trả -
-														hoàn tiền</a></li>
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/chinh-sach-bao-hanh-boi-hoan"
-													style="text-decoration: none;">Chính sách bảo hành -
-														bồi hoàn</a></li>
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/phuong-thuc-van-chuyen"
-													style="text-decoration: none;">Chính sách vận chuyển</a></li>
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/chinh-sach-khach-si"
-													style="text-decoration: none;">Chính sách khách sỉ</a></li>
+          <ul class="list-unstyled d-flex flex-row justify-content-center">
+            <li>
+              <a class="text-white px-2" href="#!">
+                <i class="fab fa-facebook-square"></i>
+              </a>
+            </li>
+            <li>
+              <a class="text-white px-2" href="#!">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a class="text-white ps-2" href="#!">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </li>
+          </ul>
 
-												<li style="list-style: none"><a
-													href="https://www.fahasa.com/huong-dan-thanh-toan-va-xuat-hd"
-													style="text-decoration: none;">Phương thức thanh toán</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0 ms-2 me-2">
+          <h5 class="text-uppercase mb-4">Các thể loại</h5>
+
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-book pe-3"></i>Sách kinh tế</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-book pe-3"></i>Văn học nước ngoài</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-book pe-3"></i>Văn học Việt Nam</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-book pe-3"></i>Từ điển</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-book pe-3"></i>Sách kĩ năng sống</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-book pe-3"></i>Tiểu thuyết</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-book pe-3"></i>Truyện thiếu nhi</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-book pe-3"></i>Sách chuyên ngành</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0 ms-2 me-2">
+          <h5 class="text-uppercase mb-4">Những vấn đề</h5>
+
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-question pe-3"></i>Sách sai nội dung</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-question pe-3"></i>Nhận sai mặt hàng</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-question pe-3"></i>Lỗi Thanh toán</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-question pe-3"></i>Lỗi kết nối ví</a>
+            </li>
+            <li class="mb-2">
+              <a href="#!" class="text-dark text-decoration-none"><i class="fas fa-question pe-3"></i>Các vấn đề khác</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0 ms-2 me-2">
+          <h5 class="text-uppercase mb-4">Liên hệ</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <p><i class="fas fa-map-marker-alt pe-2"></i>551/99/26 Lê Văn Khương, phường Hiệp Thành, Quận 12</p>
+            </li>
+            <li>
+              <p><i class="fas fa-phone pe-2"></i>(+84) 331 279 133</p>
+            </li>
+            <li>
+              <p><i class="fas fa-envelope pe-2 mb-0"></i>phamviet929@gmail.com</p>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+    <!-- Copyright -->
+  </footer>
+
+</div>
+<!-- End of .container -->
 	<script src="/assets/js/shopping-cart-app.js"></script>
 	<script src="/assets/js/solana.js"></script>
 </body>

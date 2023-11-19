@@ -31,7 +31,7 @@ public class ProductController {
 			@RequestParam("page")Optional<Integer>p,
 			@RequestParam(value="sortBy",defaultValue = "null")Optional<String>sort) {
 		//Pageable
-		Pageable pageable = PageRequest.of(p.orElse(0), 6);
+		Pageable pageable = PageRequest.of(p.orElse(0), 12);
 		Page<Product> list = null;
 		Sort sortOption = null;
 		//sort by category
@@ -64,7 +64,7 @@ public class ProductController {
 				sortOption = Sort.by(Direction.ASC, "createDate");
 				
 			}
-			pageable = PageRequest.of(p.orElse(0), 6, sortOption);
+			pageable = PageRequest.of(p.orElse(0), 12, sortOption);
 			list = productService.findAll(pageable);
 			model.addAttribute("items", list);
 		}

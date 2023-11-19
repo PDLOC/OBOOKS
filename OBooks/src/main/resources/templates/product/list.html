@@ -1,13 +1,13 @@
 <html xmlns:th="http://wwww.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::main})}">
 <main class="row  row-cols-1  g-4 mt-1 ">
-	<div th:each="p:${items.content}" class="col-sm-4 ">
+	<div th:each="p:${items.content}" class="col-sm-3 ">
 	
 
 
 		<div class="card  text-center poly-item rounded-0 ms-4">
 			<div class="card-body">
 				<a th:href="@{|product/detail/${p.id}|}">
-					<img th:src="@{|/assets/images/${p.image}|}">
+					<img th:src="@{|/assets/images/${p.image}|}" class="w-100 h-100">
 				</a>
 			</div>
 			<div class="card-body">
@@ -51,7 +51,13 @@
 				</a>
 			</li>
 		</ul>
-	</nav>
+	</nav> <div class="card-footer text-center">
+    	<button ng-click="pager.first()" class="btn btn-success" style="width: 80px; height:40px"><i class="fa-solid fa-backward-step"></i></button>
+    	<button ng-click="pager.previous()" class="btn btn-success" style="width: 80px; height:40px"><i class="fa-solid fa-backward"></i></button>
+    	<button class="btn btn-outline-dark" style="width: 80px; height:40px">{{pager.page+1}} of {{pager.count}}</button>
+    	<button ng-click="pager.next()" class="btn btn-success" style="width: 80px; height:40px"><i class="fa-solid fa-forward"></i></button>
+    	<button ng-click="pager.last()" class="btn btn-success" style="width: 80px; height:40px"><i class="fa-solid fa-forward-step"></i></button>
+    </div>
 	<!-- Pagination Edge-->
 </main>
 

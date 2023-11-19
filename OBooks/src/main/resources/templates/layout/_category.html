@@ -1,6 +1,20 @@
 <div class="list-group  rounded-0" xmlns:th="http://wwww.thymeleaf.org">
-	<a class="list-group-item list-group-item-action text-center text-primary fw-bold " aria-current="true">
+	<a class="list-group-item list-group-item-action text-center text-primary fw-bold " style="font-size:18px;font-family: cursive;" aria-current="true">
 	 [[#{sidebar.category}]]
 	</a>
-	<a th:each="c:${cates}" th:href="@{|/product/list?cid=${c.id}|}" class="list-group-item list-group-item-action"><b></b> [[${c.name}]]</a>
+	<a th:each="c:${cates}" th:href="@{|/product/list?cid=${c.id}|}" style="font-size:18px;font-family: cursive;" class="list-group-item list-group-item-action"><b><i class="fas fa-book pe-3"></i></b> [[${c.name}]]</a>
+</div>
+<br>
+<div class="list-group rounded-0">
+ <a class="list-group-item list-group-item-action text-center text-primary fw-bold " style="font-size:18px;font-family: cursive;" aria-current="true">
+	 Bộ lọc
+	</a>
+  <button style="font-size:16px;font-family: cursive;" type="button" class="list-group-item list-group-item-action">
+  <a th:href="@{|product/list?cid=${cateID}&sortBy=priceDown|}" class="dropdown-item list-group-item-action"><b><i class="fa-solid fa-arrow-down-9-1 me-2"></i></b>[[#{sidebar.highest}]]</a></button>
+  <button style="font-size:16px;font-family: cursive;" type="button" class="list-group-item list-group-item-action">
+  <a th:href="@{|product/list?cid=${cateID}&sortBy=priceUp|}" class="dropdown-item list-group-item-action"><b><i class="fa-solid fa-arrow-up-1-9 me-2"></i></b>[[#{sidebar.lowest}]]</a></button>
+  <button style="font-size:16px;font-family: cursive;" type="button" class="list-group-item list-group-item-action">
+  <a th:href="@{|product/list?cid=${cateID}&sortBy=dateDown|}" class="dropdown-item  list-group-item-action"><b><i class="fa-solid fa-arrow-down-a-z me-2"></i></b>[[#{sidebar.newDate}]]</a></button>
+  <button style="font-size:16px;font-family: cursive;" type="button" class="list-group-item list-group-item-action">
+  <a th:href="@{|product/list?cid=${cateID}&sortBy=dateUp|}" class="dropdown-item  list-group-item-action"><b><i class="fa-solid fa-arrow-up-z-a me-2"></i></b>[[#{sidebar.oldDate}]]</a></button>
 </div>
