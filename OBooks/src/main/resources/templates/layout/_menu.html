@@ -1,50 +1,54 @@
-<nav xmlns:th="http://wwww.thymeleaf.org" class="navbar navbar-expand-lg borderBottom">
-	<link rel="stylesheet" th:href="@{|/assets/css/_menu.css|}">
-	<div class="container ">
-		<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none  ">
-			<img th:src="@{|/assets/banner/obu.jpg|}" class="d-block" width="100px" alt="...">
-		</a>
-		<a class="navbar-brand ms-3" th:href="@{/}">Trang chủ</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-			<!--	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false">
-						[(#{menu.language})]
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item language" href="?lang=vi"><i class="vietnam flag"></i>Việt Nam</a>
-						</li>
-						<li><a class="dropdown-item language" href="?lang=en"><i
-									class="united states flag"></i>English</a></li>
-					</ul>
-				</li>-->
+<nav xmlns:th="http://wwww.thymeleaf.org"
+	class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
+	<div class="container">
+		<a class="navbar-brand name-store fw-bolder"
+			th:href="@{/product/list}"><img src="/assets/banner/obu.jpg"
+			width="100px"><strong>OBOOKS STORE</strong></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class=" collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav ms-auto ">
 				<th:block th:if="${#request.remoteUser}">
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/security/logoff}">[[#{menu.logout}]]</a>
+					<li class="nav-item"><a th:href="@{/order/list}"
+						class="nav-link mx-2 text-uppercase menu">Đơn hàng của tôi</a></li>
+					<li class="nav-item"
+						th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+						<a th:href="@{/admin/home/index}"
+						class="nav-link mx-2 text-uppercase menu">Quản lí</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/order/list}">[[#{menu.order}]]</a>
-					</li>
-					<li class="nav-item" th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
-						<a class="nav-link" th:href="@{/admin/home/index}">[[#{menu.admin}]]</a>
-					</li>
+					<li class="nav-item"><a th:href="@{/security/logoff}"
+						class="nav-link mx-2 text-uppercase menu">Đăng xuất</a></li>
 				</th:block>
-				<th:block th:unless="${#request.remoteUser}">
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/security/login/form}">[[#{menu.login}]]</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/security/register/form}">[[#{menu.register}]]</a>
-					</li>
-				</div>
+
+			</ul>
+			<ul class="navbar-nav ms-2">
+				<li class="nav-item"><a class="btn position-relative menu"
+					th:href="@{/cart/view}"> <i class="bi bi-cart3"
+						style="font-size: 20px;"></i><span
+						class="position-absolute top-0 start-50 badge rounded-pill bg-danger">
+							{{cart.count}}</span>
+				</a></li>
+				<th:block>
+					<li class="nav-item ms-2" th:unless="${#request.remoteUser}"><a
+						th:href="@{/security/login/form}"
+						class="nav-link mx-2 text-uppercase menu"><i
+							class="bi bi-person-circle me-2"></i>Đăng nhập</a></li>
+					<a th:href="@{/security/register/form}"
+						class="nav-link mx-2 text-uppercase menu">Đăng ký</a>
 				</th:block>
 			</ul>
+			<div th:if="${#request.remoteUser}" class="text-end">
+				<a class="nav-link mx-2 text-uppercase text-success fw-bolder">Welcome
+					[[${#request.remoteUser}]]</a>
+			</div>
 		</div>
-
 	</div>
-	
 </nav>
+
 <script type="text/javascript">
 	$(document).ready(function () {
 		$(".language").click(function () {
