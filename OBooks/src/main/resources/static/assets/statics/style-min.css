@@ -1,0 +1,24 @@
+#movies img,
+#movie img {
+    width: 100%
+}
+
+@media(min-width:960px) {
+    #movies .col-md-3 .well {
+        height: 390px
+    }
+    #movies .col-md-3 img {
+        height: 240px
+    }
+}
+header {
+	position: fixed;
+	z-index: 100;
+  opacity:0.75;
+  background-color: transparent;
+  transition: background-color 0s ease-in-out;
+  }
+  
+  header.scrolled{
+    opacity: 0.75;
+  }

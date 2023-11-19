@@ -17,7 +17,7 @@
 						class="nav-link mx-2 text-uppercase menu">Đơn hàng của tôi</a></li>
 					<li class="nav-item"
 						th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
-						<a th:href="@{/admin/home/index}"
+						<a th:href="@{/admin}"
 						class="nav-link mx-2 text-uppercase menu">Quản lí</a>
 					</li>
 					<li class="nav-item"><a th:href="@{/security/logoff}"
