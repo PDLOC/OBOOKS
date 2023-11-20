@@ -1,6 +1,7 @@
 <html xmlns="http://wwww.thymeleaf.org"
 	th:replace="~{/layout/index::dynamic(~{::main})}">
-<main>
+<main class="container">
+	<p class="text-center h2 fw-bolder mt-4">Giỏ hàng</p>
 	<div th:fragment="shopping-cart">
 		<div class="pb-5 mb-2 mt-4">
 			<!-- Cart Item-->
@@ -58,6 +59,5 @@
 			</div>
 		</div>
 	</div>
-
 </main>
 </html>

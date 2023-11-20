@@ -17,8 +17,8 @@
 						class="nav-link mx-2 text-uppercase menu">Đơn hàng của tôi</a></li>
 					<li class="nav-item"
 						th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
-						<a th:href="@{/admin}"
-						class="nav-link mx-2 text-uppercase menu">Quản lí</a>
+						<a th:href="@{/admin}" class="nav-link mx-2 text-uppercase menu">Quản
+							lí</a>
 					</li>
 					<li class="nav-item"><a th:href="@{/security/logoff}"
 						class="nav-link mx-2 text-uppercase menu">Đăng xuất</a></li>
@@ -32,13 +32,13 @@
 						class="position-absolute top-0 start-50 badge rounded-pill bg-danger">
 							{{cart.count}}</span>
 				</a></li>
-				<th:block>
-					<li class="nav-item ms-2" th:unless="${#request.remoteUser}"><a
-						th:href="@{/security/login/form}"
+				<th:block th:unless="${#request.remoteUser}">
+					<li class="nav-item ms-2"><a th:href="@{/security/login/form}"
 						class="nav-link mx-2 text-uppercase menu"><i
 							class="bi bi-person-circle me-2"></i>Đăng nhập</a></li>
-					<a th:href="@{/security/register/form}"
-						class="nav-link mx-2 text-uppercase menu">Đăng ký</a>
+					<li class="nav-item me-5"><a
+						th:href="@{/security/register/form}"
+						class="nav-link me-5 text-uppercase menu">Đăng ký</a></li>
 				</th:block>
 			</ul>
 			<div th:if="${#request.remoteUser}" class="text-end">

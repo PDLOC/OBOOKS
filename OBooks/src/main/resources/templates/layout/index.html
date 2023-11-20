@@ -44,14 +44,8 @@
 	<div class="container-fluid m-0 p-0 border border-white mb-3 row mx-auto">
 		<div th:replace="/layout/_menu.html"></div>
 	</div>
-	<div class="container row mx-auto">
-		<div th:replace="/layout/_header"></div>
-	</div>
-	<div class="container-fluid m-0 p-0 row mx-auto" style="background-color: white; min-height: 1000px;">
-		<aside class="container-fluid m-0 p-0 col-sm-2 pe-0 mt-3">
-			<div th:replace="/layout/_category.html"></div>
-		</aside>
-		<article class="col-sm-10 ps-0">
+	<div class="container-fluid m-0 p-0 row mx-auto" style="background-color: white; min-height: 500px;">
+		<article class="col-sm-10 ps-0 mx-auto">
 			<div th:replace="${main}"></div>
 		</article>
 	</div>

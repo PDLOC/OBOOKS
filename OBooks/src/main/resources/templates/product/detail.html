@@ -1,8 +1,9 @@
 <html xmlns:th="http://wwww.thymeleaf.org"
 	th:replace="~{/layout/index::dynamic(~{::main})}">
 <main th:object="${item}" class="poly-item-detail">
+	<p class="text-center fw-bolder h2 mt-3">Thông tin chi tiết</p>
 	<div class="container">
-		<div class="card-body mt-5">
+		<div class="card-body mt-3">
 			<div th:object="${item}" class="row">
 				<div class="col-lg-6 col-md-5 col-sm-6 col-5">
 					<div class="pro-img-details text-center">
@@ -30,7 +31,7 @@
 						trai của một người cha châu Phi và người mẹ Mỹ da trắng đã đi tìm
 						một ý nghĩa thực tế cho cuộc đời mình với tư cách là một người Mỹ
 						da đen.</p>
-					<button class="btn btn-danger btn-rounded mr-1 mt-4 mb-4"
+					<button class="btn btn-danger btn-rounded mr-1 mt-4 mb-4" th:attr="ng-click=@{|cart.add(*{id})|}"
 						data-toggle="tooltip" title="" data-original-title="Add to cart">
 						Thêm vào giỏ hàng</button>
 					<!-- <button class="btn btn-danger btn-rounded mt-4 mb-4">Mua ngay</button> -->
@@ -40,7 +41,7 @@
 						<h3>CÙNG LOẠI</h3>
 						<hr>
 						<div class="row row-cols-1 g-4 mt-1 ">
-							<div th:each="p:*{category.products}" class="col-sm-4 ">
+							<div th:each="p:*{category.products}" class="col-sm-3">
 								<div class="card  text-center poly-item rounded-0 ms-4">
 									<div class="card-body">
 										<a th:href="@{|product/detail/${p.id}|}"> <img
