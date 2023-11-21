@@ -1,34 +1,50 @@
-<html xmlns:th="http://wwww.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::main})}">
+<html xmlns:th="http://wwww.thymeleaf.org"
+	th:replace="~{/layout/index::dynamic(~{::main})}">
 
-	<main class="container mt-3">
-		<div th:replace="~{/cart/view::shopping-cart}"></div>
-		<div class="card border border-1 border-black mt-3">
-			<div class="card-header text-success fw-bolder">
-				<h3 class="mt-2">Đặt hàng</h3>
-			</div>
-			<div class="card-body">
-				<div class="row">
-					<div class="form-group col-sm-6">
-						<label>Người đặt hàng:</label>
-						<div class="form-control" id="username">[[${#request.remoteUser}]]</div>
-					</div>
-					<div class="form-group col-sm-6">
-						<label>Ngày đặt hàng:</label>
-						<div class="form-control">{{order.createDate | date:'dd-MM-yyyy'}}</div>
-					</div>
+<main class="container mt-3">
+	<div th:replace="~{/cart/view::shopping-cart}"></div>
+	<div class="card border border-1 border-black mt-3">
+		<div class="card-header text-success fw-bolder">
+			<h3 class="mt-2">Đặt hàng</h3>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<label>Người đặt hàng:</label>
+					<div class="form-control" id="username">[[${#request.remoteUser}]]</div>
 				</div>
-				<div class="row mt-2">
-						<div class="form-group">
-							<label>Địa chỉ ship:</label>
-							<textarea ng-model="order.address" rows="3" cols="10" class="form-control"></textarea>
-						</div>
+				<div class="form-group col-sm-6">
+					<label>Ngày đặt hàng:</label>
+					<div class="form-control">{{order.createDate |
+						date:'dd-MM-yyyy'}}</div>
 				</div>
 			</div>
-			<div class="card-footer text-end">
-				<a th:href="@{/home/payment}" class="btn btn-success">Thanh toán thẻ</a>
-				<button ng-click="order.purchase()" class="btn btn-success">Thanh toán trực tiếp</button>
+			<div class="row mt-2">
+				<div class="form-group">
+					<label>Địa chỉ ship:</label>
+					<textarea ng-model="order.address" rows="3" cols="10"
+						class="form-control"></textarea>
+				</div>
 			</div>
 		</div>
-		
-	</main>
+		<div class="card-footer text-end">
+			<div class="form">
+				<form id="Form" method="post" action="checkout.html">
+					<div class="form__row d-flex align-items-center justify-space">
+						<input type="text" disabled="disabled" name="SOL" value=""
+							class="form__input form__input--15 border-bottom" />
+						<div class="form__coin-icon ms-2">
+							<img src="/assets/images/solana.png" alt="" title="" /><span>SOL</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			<button ng-click="transferSol()" class="btn btn-success">Thanh toán
+				thẻ</button>
+			<button ng-click="order.purchase()" class="btn btn-success">Thanh
+				toán trực tiếp</button>
+		</div>
+	</div>
+
+</main>
 </html>
