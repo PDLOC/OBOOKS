@@ -10,6 +10,7 @@ import com.obooks.entity.Order;
 
 @Service
 public interface Service_Order {
+	List<Order> findAll();
 	Order create(JsonNode orderData);
 
 	Order findById(Long id);
@@ -21,4 +22,6 @@ public interface Service_Order {
 	Long totalOrder();
 
 	List<Object[]> getRevenueLast7Days();
+
+	
 }

@@ -6,6 +6,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/assets/admin/product/index.html",
 			controller: "product-ctrl"
 		})
+		.when("/order", {
+			templateUrl: "/assets/admin/hoadon/index.html",
+			controller: "hoadon-ctrl"
+		})
 		.when("/account", {
 			templateUrl: "/assets/admin/account/index.html",
 			controller: "account-ctrl"
@@ -14,10 +18,7 @@ app.config(function($routeProvider) {
 			templateUrl: "/assets/admin/summary/index.html",
 			controller: "summary-ctrl"
 		})
-		.when("/order", {
-			templateUrl: "/assets/admin/order/index.html",
-			controller: "order-ctrl"
-		})
+	
 		.when("/authorize", {
 			templateUrl: "/assets/admin/authority/index.html",
 			controller: "authority-ctrl"

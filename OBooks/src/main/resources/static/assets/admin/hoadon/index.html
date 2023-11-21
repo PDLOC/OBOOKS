@@ -1,0 +1,36 @@
+<div class="card">
+	<div class="card-header text-center mx-auto ">
+		<h3 class="mt-2 text-center">DANH SÁCH HÓA ĐƠN</h3>
+	</div>
+    <div class="card-body">
+        <table class="table table-bordered">
+        	<thead class="" style="font-variant: small-caps;">
+        		<tr>
+        			<th>Id</th>
+        			<th>Name</th>        		
+        			<th>Date</th>
+        			<th>Address</th>
+        		
+        			
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr ng-repeat="item in pager.items">
+        			<td>{{item.id}}</td>
+        			<td>{{item.account.fullname}}</td>        			
+        			<td>{{item.createDate|date:'dd-MM-yyyy'}}</td>
+        			<td>{{item.address}}</td>
+        			
+        			
+        		</tr>
+        	</tbody>
+        </table>
+    </div>
+    <div class="card-footer text-center">
+    	<button ng-click="pager.first()" class="btn btn-danger" style="width: 42px;"><i class="fa-solid fa-backward-step"></i></button>
+    	<button ng-click="pager.previous()" class="btn btn-primary"><i class="fa-solid fa-backward"></i></button>
+    	<button class="btn btn-success">{{pager.page+1}} of {{pager.count}}</button>
+    	<button ng-click="pager.next()" class="btn btn-primary"><i class="fa-solid fa-forward"></i></button>
+    	<button ng-click="pager.last()" class="btn btn-danger" style="width: 42px;"><i class="fa-solid fa-forward-step"></i></button>
+    </div>
+</div>

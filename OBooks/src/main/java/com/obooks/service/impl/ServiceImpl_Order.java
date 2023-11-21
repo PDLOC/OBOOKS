@@ -36,6 +36,10 @@ public class ServiceImpl_Order implements Service_Order{
 		return order;
 	}
 	@Override
+	public List<Order> findAll() {
+		return dao.findAllOrderByDescending();
+	}
+	@Override
 	public Order findById(Long id) {
 		return dao.findById(id).get();
 	}

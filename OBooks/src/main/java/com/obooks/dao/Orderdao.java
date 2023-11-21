@@ -38,4 +38,6 @@ public interface Orderdao extends JpaRepository<Order, Long>{
 			+ "left join OrderDetails dt on  t1.Id = dt.OrderId "
 			+ "Group by cast(t.last7Days as Date)", nativeQuery = true)
 	List<Object[]> getRevenueLast7Days();
+	@Query(value ="SELECT * FROM orders ORDER BY id DESC", nativeQuery = true)
+	List<Order> findAllOrderByDescending();
 }
