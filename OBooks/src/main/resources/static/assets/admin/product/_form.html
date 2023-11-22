@@ -57,10 +57,14 @@
     		</div>
     	</div>
     </div>
-    <div class="card-footer text-center">
-    	<button ng-click="create()" class="btn btn-primary"><b class="fa-solid fa-square-plus"></b> Create</button>
-    	<button ng-click="update()" class="btn btn-success"><b class="fa-solid fa-square-pen"></b> Update</button>
-    	<button ng-click="delete(form)"  class="btn btn-danger"><b class="fa-solid fa-trash-can"></b> Delete</button>
-    	<button ng-click="reset()" class="btn btn-info"><b class="fa-solid fa-rotate"></b> Reset</button>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+    	<button style="width: 100px;" type="submit" class="btn btn-success" 
+    		ng-click="create()"> Create</button>
+    	<button style="width: 100px;" type="submit" class="btn btn-success"
+    		ng-click="update()"> Update</button>
+    	<button style="width: 100px;" type="submit" class="btn btn-success"
+    		ng-click="delete(form)">Delete</button>
+    	<button style="width: 100px;" class="btn btn-success"
+    		ng-click="reset()"> Reset</button>
     </div>
 </div>

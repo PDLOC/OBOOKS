@@ -4,7 +4,8 @@
 	</div>
     <div class="card-body">
         <table class="table table-bordered">
-        	<thead class="" style="font-variant: small-caps;">
+        	<thead class="bg-success text-white" 
+        		style="font-variant: small-caps;">
         		<tr>
         			<th>Id</th>
         			<th>Name</th>
@@ -34,10 +35,10 @@
         </table>
     </div>
     <div class="card-footer text-center">
-    	<button ng-click="pager.first()" class="btn btn-danger" style="width: 42px;"><i class="fa-solid fa-backward-step"></i></button>
-    	<button ng-click="pager.previous()" class="btn btn-primary"><i class="fa-solid fa-backward"></i></button>
-    	<button class="btn btn-success">{{pager.page+1}} of {{pager.count}}</button>
-    	<button ng-click="pager.next()" class="btn btn-primary"><i class="fa-solid fa-forward"></i></button>
-    	<button ng-click="pager.last()" class="btn btn-danger" style="width: 42px;"><i class="fa-solid fa-forward-step"></i></button>
+    	<a ng-click="pager.first()" class="btn btn-outline-success">First</a>
+		<a ng-click="pager.prev()" class="btn btn-outline-success">Previous</a>
+		<button class="btn">{{pager.page + 1 }} / {{pager.count}}</button>
+		<a ng-click="pager.next()" class="btn btn-outline-success">Next</a> <a
+			ng-click="pager.last()" class="btn btn-outline-success">Last</a>
     </div>
 </div>
