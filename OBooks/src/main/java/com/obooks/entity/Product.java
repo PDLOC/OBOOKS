@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.ToString;
 
 @SuppressWarnings("serial")
 @Data
@@ -40,6 +41,7 @@ public class Product  implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "Categoryid")
 	Category category;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	List<OrderDetail> orderDetails;	

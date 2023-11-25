@@ -13,7 +13,7 @@
 		<div class=" collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav ms-auto ">
 				<th:block th:if="${#request.remoteUser}">
-				<li class="nav-item"><a th:href="@{/product/uploadsp}"
+				<li class="nav-item"><a th:href="@{|/product/uploadsp/${#request.remoteUser}|}"
 						class="nav-link mx-2 text-uppercase menu">Sách của tôi</a></li>
 					<li class="nav-item"><a th:href="@{/order/list}"
 						class="nav-link mx-2 text-uppercase menu">Đơn hàng của tôi</a></li>

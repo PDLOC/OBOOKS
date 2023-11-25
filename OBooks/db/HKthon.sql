@@ -1470,8 +1470,8 @@ INSERT [dbo].[Orders] ([Id], [Username], [CreateDate], [Address]) VALUES (10691,
 INSERT [dbo].[Orders] ([Id], [Username], [CreateDate], [Address]) VALUES (10692, N'ALFKI', CAST(0x00008B7800000000 AS DateTime), N'Obere Str. 57')
 INSERT [dbo].[Orders] ([Id], [Username], [CreateDate], [Address]) VALUES (10693, N'WHITC', CAST(0x00008B7B00000000 AS DateTime), N'1029 - 12th Ave. S.')
 SET IDENTITY_INSERT [dbo].[Orders] OFF
-SET IDENTITY_INSERT [dbo].[Products] ON 
-INSERT [dbo].[Products] ([Id],[Username] , [Name], [Image], [Price], [CreateDate], [Available], [CategoryId]) VALUES (1001,N'locpd', N'Lets Go 3 WB 3Ed ', N'1.jpg', 20000, CAST(N'2023-05-30' AS Date), 1, N'300')
+SET IDENTITY_INSERT [dbo].[Products] ON
+INSERT [dbo].[Products] ([Id],[Username], [Name], [Image], [Price], [CreateDate], [Available], [CategoryId]) VALUES (1001,N'locpd', N'Lets Go 3 WB 3Ed ', N'1.jpg', 20000, CAST(N'2023-05-30' AS Date), 1, N'300')
 INSERT [dbo].[Products] ([Id],[Username], [Name], [Image], [Price], [CreateDate], [Available], [CategoryId]) VALUES (1002,N'locpd', N'Smart Choice 2B Multi-Pack with Online Practice 2Ed (SB/ WB)', N'2.jpg', 22000, CAST(N'2023-05-30' AS Date), 1, N'300')
 INSERT [dbo].[Products] ([Id],[Username], [Name], [Image], [Price], [CreateDate], [Available], [CategoryId]) VALUES (1003,N'locpd', N'Lets Go 3 SB 3Ed', N'3.jpg', 67000, CAST(N'2020-06-14' AS Date), 1, N'300')
 INSERT [dbo].[Products] ([Id],[Username], [Name], [Image], [Price], [CreateDate], [Available], [CategoryId]) VALUES (1004,N'locpd', N'45 Giây Tạo Nên Thay Đổi', N'4.jpg', 55000, CAST(N'2023-03-10' AS Date), 1, N'300')
@@ -1630,3 +1630,5 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Đang kinh doa
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mã loại, FK' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Products', @level2type=N'COLUMN',@level2name=N'CategoryId'
 GO
+
+select * from Products p where p.username like 'locpd' order by p.id desc

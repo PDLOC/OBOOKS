@@ -64,4 +64,8 @@ public interface Productdao extends JpaRepository<Product, Integer>{
 			+ "group by p.Name "
 			+ "Order by mostSold desc",nativeQuery = true)
 	List<Object[]> top10Product();
+
+	
+	@Query("SELECT p FROM Product p WHERE p.acc.username=?1 order by p.id DESC")
+	List<Product> findByUsername(String username);
 }

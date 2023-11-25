@@ -14,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.ToString;
 
 @SuppressWarnings("serial")
 @Data
@@ -34,6 +35,7 @@ public class Account  implements Serializable{
 	@Email
 	String email;
 	String photo;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "account")
 	List<Order> orders;

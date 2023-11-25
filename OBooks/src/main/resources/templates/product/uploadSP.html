@@ -28,8 +28,8 @@
 						<thead class="bg-success text-white"
 							style="font-variant: small-caps;">
 							<tr>
-								<th>Id</th>
-								<th>Image</th>
+								<th>Ảnh</th>
+								<th>Tài khoản</th>
 								<th>Tên sách</th>
 								<th>Giá</th>
 								<th>Ngày đăng</th>
@@ -39,49 +39,43 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="item in pager.items">
-								<td>{{item.id}}</td>
-								<td>{{item.image}}</td>
-								<td>{{item.name}}</td>
-								<td class="text-end">{{item.price|number:0}}</td>
-								<td>{{item.createDate|date:'dd-MM-yyyy'}}</td>
-								<td>{{item.category.name}}</td>
-								<td>{{item.available?'Yes':'No'}}</td>
-								<td class="text-center">
-									<button ng-click="edit(item)" class="btn btn-warning">
-										<i class="fa-solid fa-square-pen"></i>
-									</button>
-									<button ng-click="delete(item)" c class="btn btn-danger">
-										<i class="fa-solid fa-trash-can"></i>
-									</button>
-								</td>
+							<tr th:each="p:${listP}">
+								<td><img th:src="@{|/assets/images/${p.image}|}"
+									style="max-width: 100%" height="150px"></td>
+								<td th:utext="${p.acc.username}"></td>
+								<td th:utext="${p.name}"></td>
+								<td class="text-end" th:utext="${p.getFormattedPrice}"></td>
+								<td th:utext="${p.getFormattedCreatedate}"></td>
+								<td th:utext="${p.category.name}"></td>
+								<td th:utext="${p.available?'Yes':'No'}"></td>
+								<td class="text-center"><a
+									th:href="@{|/product/uploadsp/${#request.remoteUser}/edit/${p.id}|}"
+									class="btn btn-warning"> <i class="fa-solid fa-square-pen"></i>
+								</a></td>
 							</tr>
 						</tbody>
 					</table>
-				</div>
-				<div class="card-footer text-center">
-					<a ng-click="pager.first()" class="btn btn-outline-success">First</a>
-					<a ng-click="pager.prev()" class="btn btn-outline-success">Previous</a>
-					<button class="btn">{{pager.page + 1 }} / {{pager.count}}</button>
-					<a ng-click="pager.next()" class="btn btn-outline-success">Next</a>
-					<a ng-click="pager.last()" class="btn btn-outline-success">Last</a>
 				</div>
 			</div>
 
 		</div>
 		<div class="tab-pane fade" id="pills-home" role="tabpanel"
 			aria-labelledby="pills-home-tab">
-			<form th:object="${product}" action="POST">
+			<form th:object="${product}" action="">
 				<div class="card">
 					<div class="card-header">
 						<h3 class="mt-2 text-center fw-bolder">ĐĂNG SẢN PHẨM</h3>
 					</div>
 					<div class="card-body">
+						<div class="form-group col-sm-6">
+							<input type="text" th:field="*{acc}"
+								th:value="${#request.remoteUser}" class="form-control" />
+						</div>
 						<div class="row">
 							<div class="col-sm-4 text-center">
-								<label for="image"> <img 
-									th:src="@{|/assets/images/${image}|}" style="max-width: 100%"
-									height="150px" />
+								<label for="image"> <img
+									th:src="@{|/assets/images/cloud-upload.jpg|}"
+									style="max-width: 100%" height="150px" />
 								</label>
 							</div>
 							<div class="col-sm-8">
@@ -97,8 +91,8 @@
 								</div>
 								<div class="row mt-3">
 									<div class="form-group col-sm-6">
-										<label>Hình ảnh</label> <input type="file" class="form-control"
-											id="image" th:field="*{image}">
+										<label>Hình ảnh</label> <input type="file"
+											class="form-control" id="image" th:field="*{image}">
 									</div>
 									<div class="form-group col-sm-6">
 										<label>Thể loại</label> <select th:field="*{category}"
@@ -110,12 +104,8 @@
 								</div>
 								<div class="row mt-3">
 									<div class="form-group col-sm-6">
-										<label>Ngày đăng</label> <input th:field="*{createDate}"
-											type="date" class="form-control" />
-									</div>
-									<div class="form-group col-sm-6">
 										<label>Trạng thái</label>
-										<div class="form-control">
+										<div class="form-control" style="border: none;">
 											<div class="form-check ps-0">
 												<input th:field="*{available}" class="form-check-input1"
 													name="available" th:value="true" type="radio"
@@ -136,13 +126,11 @@
 				</div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
 					<button style="width: 100px;" type="submit" class="btn btn-success"
-						ng-click="create()">Create</button>
+						th:formaction="@{|/product/uploadsp/${#request.remoteUser}/create|}">Create</button>
 					<button style="width: 100px;" type="submit" class="btn btn-success"
 						ng-click="update()">Update</button>
-					<button style="width: 100px;" type="submit" class="btn btn-success"
-						ng-click="delete(form)">Delete</button>
 					<button style="width: 100px;" class="btn btn-success"
-						ng-click="reset()">Reset</button>
+						th:formaction="@{|/product/uploadsp/${#request.remoteUser}|}">Reset</button>
 				</div>
 			</form>
 		</div>

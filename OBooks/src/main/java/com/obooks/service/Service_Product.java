@@ -37,4 +37,6 @@ public interface Service_Product{
 
 	List<Object[]> top10Product();
 
+	List<Product> findByUsername(String username);
+
 }

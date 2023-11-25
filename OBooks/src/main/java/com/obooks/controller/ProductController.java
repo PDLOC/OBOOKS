@@ -14,10 +14,13 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.obooks.entity.Account;
 import com.obooks.entity.Category;
 import com.obooks.entity.Product;
 import com.obooks.service.Service_Category;
@@ -111,12 +114,34 @@ public class ProductController {
 		return "product/detail";
 	}
 
-	@GetMapping("uploadsp")
-	public String up(Model model) {
+	@GetMapping("uploadsp/{uname}")
+	public String up(Model model, @PathVariable("uname") String username) {
 		Product item = new Product();
 		model.addAttribute("product", item);
 		List<Category> listcate = categoryService.findAll();
-		model.addAttribute("listCate",listcate);
+		model.addAttribute("listCate", listcate);
+		List<Product> listProduct = productService.findByUsername(username);
+		model.addAttribute("listP", listProduct);
+
 		return "product/uploadSP";
 	}
+
+	@PostMapping("uploadsp/{uname}/create")
+	public String upProduct(Model model, @PathVariable("uname") String username,
+			@ModelAttribute("product") Product product) {
+
+		productService.create(product);
+		System.out.println("Đăng thành công");
+		return "redirect:/product/uploadsp/" + username;
+	}
+
+	@GetMapping("/uploadsp/{uname}/edit/{id}")
+	public String edit(Model model, @PathVariable("uname") String username, @PathVariable("id") Integer id) {
+		Product p = productService.findById(id);
+		model.addAttribute("product",p);
+		
+		return "redirect:/product/uploadsp/" + username;
+	}
+
+	
 }
