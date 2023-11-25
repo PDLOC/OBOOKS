@@ -5,7 +5,8 @@
 	<div th:fragment="shopping-cart">
 		<div class="pb-5 mb-2 mt-4">
 			<!-- Cart Item-->
-			<div class="cart-item d-md-flex justify-content-between" ng-repeat="item in cart.items">
+			<div class="cart-item d-md-flex justify-content-between"
+				ng-repeat="item in cart.items">
 				<input type="hidden" name="id" ng-value="{{item.id}}"> <a
 					ng-click="cart.remove(item.id)" class="remove-item"><i
 					class="fa fa-times"></i></a>
@@ -52,9 +53,10 @@
 			</div>
 			<!-- Buttons-->
 			<hr class="my-2">
+			
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				<a class="btn btn-outline-success me-2" ng-click="cart.clear()">Xóa
-					tất cả</a> <a th:href="@{/order/checkout}"
+					tất cả</a> <a ng-click="order.checkout()"
 					class="btn btn-outline-success">Thanh toán</a>
 			</div>
 		</div>

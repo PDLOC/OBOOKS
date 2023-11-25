@@ -123,7 +123,7 @@
 		</div>
 		<!-- Pagination-->
 		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center ">
+			<ul class="pagination justify-content-center mt-3">
 				<li class="page-item" th:classappend="${items.number==0} ? disabled">
 					<a class="page-link"
 					th:href="@{|product/list?cid=${cateID}&sortBy=${sort}&page=${items.number-1}|}"

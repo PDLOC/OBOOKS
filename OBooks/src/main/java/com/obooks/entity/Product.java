@@ -44,6 +44,10 @@ public class Product  implements Serializable{
 	@OneToMany(mappedBy = "product")
 	List<OrderDetail> orderDetails;	
 	
+	@ManyToOne
+	@JoinColumn(name = "Username")
+	Account acc;
+	
 	
 	public String getFormattedPrice() {
         DecimalFormat decimalFormat = new DecimalFormat("###,### Đ");

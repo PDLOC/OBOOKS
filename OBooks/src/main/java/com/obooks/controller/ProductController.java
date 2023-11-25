@@ -18,94 +18,105 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.obooks.entity.Category;
 import com.obooks.entity.Product;
+import com.obooks.service.Service_Category;
 import com.obooks.service.Service_Product;
 
 @Controller
 @RequestMapping("product")
 public class ProductController {
-	@Autowired private Service_Product productService;
-	
+	@Autowired
+	private Service_Product productService;
+	@Autowired
+	private Service_Category categoryService;
+
 	@GetMapping("list")
-	public String list(Model model,@RequestParam(value="cid",defaultValue = "null")Optional<String>cid,
-			@RequestParam("page")Optional<Integer>p,
-			@RequestParam(value="sortBy",defaultValue = "null")Optional<String>sort) {
-		//Pageable
+	public String list(Model model, @RequestParam(value = "cid", defaultValue = "null") Optional<String> cid,
+			@RequestParam("page") Optional<Integer> p,
+			@RequestParam(value = "sortBy", defaultValue = "null") Optional<String> sort) {
+		// Pageable
 		Pageable pageable = PageRequest.of(p.orElse(0), 12);
 		Page<Product> list = null;
 		Sort sortOption = null;
-		//sort by category
-		if(!cid.get().equals("null") && sort.get().equals("null")) {
-			list = productService.findByCategoryID(cid.get(),pageable);
+		// sort by category
+		if (!cid.get().equals("null") && sort.get().equals("null")) {
+			list = productService.findByCategoryID(cid.get(), pageable);
 			model.addAttribute("items", list);
 			model.addAttribute("cateID", cid.get());
 		}
-		//onload, no sort option
-		if(cid.get().equals("null") && sort.get().equals("null")){
+		// onload, no sort option
+		if (cid.get().equals("null") && sort.get().equals("null")) {
 			list = productService.findAll(pageable);
 			model.addAttribute("items", list);
 		}
-		//sort by price and date
-		if(!sort.get().equals("null") && cid.get().equals("null")) {
-			//Price down
-			if(sort.get().equals("priceDown")) {
+		// sort by price and date
+		if (!sort.get().equals("null") && cid.get().equals("null")) {
+			// Price down
+			if (sort.get().equals("priceDown")) {
 				sortOption = Sort.by(Direction.DESC, "price");
 			}
-			//price up
-			if(sort.get().equals("priceUp")) {
+			// price up
+			if (sort.get().equals("priceUp")) {
 				sortOption = Sort.by(Direction.ASC, "price");
 			}
-			//Date down
-			if(sort.get().equals("dateDown")) {
+			// Date down
+			if (sort.get().equals("dateDown")) {
 				sortOption = Sort.by(Direction.DESC, "createDate");
 			}
-			//Date up
-			if(sort.get().equals("dateUp")) {
+			// Date up
+			if (sort.get().equals("dateUp")) {
 				sortOption = Sort.by(Direction.ASC, "createDate");
-				
+
 			}
 			pageable = PageRequest.of(p.orElse(0), 12, sortOption);
 			list = productService.findAll(pageable);
 			model.addAttribute("items", list);
 		}
-		
-		if(!sort.get().equals("null") && !cid.get().equals("null")) {
-			//Price down
-			if(sort.get().equals("priceDown")) {
+
+		if (!sort.get().equals("null") && !cid.get().equals("null")) {
+			// Price down
+			if (sort.get().equals("priceDown")) {
 				sortOption = Sort.by(Direction.DESC, "price");
 			}
-			//price up
-			if(sort.get().equals("priceUp")) {
+			// price up
+			if (sort.get().equals("priceUp")) {
 				sortOption = Sort.by(Direction.ASC, "price");
 			}
-			//Date down
-			if(sort.get().equals("dateDown")) {
+			// Date down
+			if (sort.get().equals("dateDown")) {
 				sortOption = Sort.by(Direction.DESC, "createDate");
 			}
-			//Date up
-			if(sort.get().equals("dateUp")) {
+			// Date up
+			if (sort.get().equals("dateUp")) {
 				sortOption = Sort.by(Direction.ASC, "createDate");
-				
+
 			}
 			pageable = PageRequest.of(p.orElse(0), 6, sortOption);
-			list = productService.findByCategoryID(cid.get(),pageable);
+			list = productService.findByCategoryID(cid.get(), pageable);
 			model.addAttribute("items", list);
 			model.addAttribute("cateID", cid.get());
 		}
 		int totalPages = list.getTotalPages();
-		List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-				.boxed()
-				.collect(Collectors.toList());
+		List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
 		model.addAttribute("pageNumbers", pageNumbers);
 		model.addAttribute("sort", sort.get());
 		return "product/list";
 	}
-	
+
 	@GetMapping("detail/{id}")
-	public String detail(Model model, @PathVariable("id")Integer productID) {
+	public String detail(Model model, @PathVariable("id") Integer productID) {
 		Product item = productService.findById(productID);
 		model.addAttribute("item", item);
 		return "product/detail";
 	}
-	
+
+	@GetMapping("uploadsp")
+	public String up(Model model) {
+		Product item = new Product();
+		model.addAttribute("product", item);
+		List<Category> listcate = categoryService.findAll();
+		model.addAttribute("listCate",listcate);
+		return "product/uploadSP";
+	}
 }
