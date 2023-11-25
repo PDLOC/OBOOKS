@@ -122,26 +122,25 @@ public class ProductController {
 		model.addAttribute("listCate", listcate);
 		List<Product> listProduct = productService.findByUsername(username);
 		model.addAttribute("listP", listProduct);
-
 		return "product/uploadSP";
 	}
 
 	@PostMapping("uploadsp/{uname}/create")
 	public String upProduct(Model model, @PathVariable("uname") String username,
 			@ModelAttribute("product") Product product) {
-
 		productService.create(product);
-		System.out.println("Đăng thành công");
 		return "redirect:/product/uploadsp/" + username;
 	}
 
 	@GetMapping("/uploadsp/{uname}/edit/{id}")
 	public String edit(Model model, @PathVariable("uname") String username, @PathVariable("id") Integer id) {
 		Product p = productService.findById(id);
-		model.addAttribute("product",p);
-		
-		return "redirect:/product/uploadsp/" + username;
+		model.addAttribute("product", p);
+		List<Product> listProduct = productService.findByUsername(username);
+		model.addAttribute("listP", listProduct);
+		List<Category> listcate = categoryService.findAll();
+		model.addAttribute("listCate", listcate);
+		return "product/uploadSP";
 	}
 
-	
 }

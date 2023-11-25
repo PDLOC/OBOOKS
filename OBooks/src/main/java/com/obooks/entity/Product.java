@@ -42,6 +42,7 @@ public class Product  implements Serializable{
 	@JoinColumn(name = "Categoryid")
 	Category category;
 	
+	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	List<OrderDetail> orderDetails;	

@@ -16,6 +16,8 @@
 				sản phẩm</button>
 		</li>
 	</ul>
+	<div class="text-center fw-boler text-danger" th:utext="${message}"></div>
+	
 	<div class="tab-content mb-5" id="pills-tabContent">
 		<div class="tab-pane fade show active" id="pills-profile"
 			role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -61,20 +63,19 @@
 		</div>
 		<div class="tab-pane fade" id="pills-home" role="tabpanel"
 			aria-labelledby="pills-home-tab">
-			<form th:object="${product}" action="">
+			<form th:object="${product}" action="" method="POST">
 				<div class="card">
 					<div class="card-header">
 						<h3 class="mt-2 text-center fw-bolder">ĐĂNG SẢN PHẨM</h3>
 					</div>
 					<div class="card-body">
 						<div class="form-group col-sm-6">
-							<input type="text" th:field="*{acc}"
-								th:value="${#request.remoteUser}" class="form-control" />
+							<input type="text" th:field="*{acc}" class="form-control"/>
 						</div>
 						<div class="row">
 							<div class="col-sm-4 text-center">
 								<label for="image"> <img
-									th:src="@{|/assets/images/cloud-upload.jpg|}"
+									th:src="@{|/assets/images/*{image}|}" 
 									style="max-width: 100%" height="150px" />
 								</label>
 							</div>
@@ -129,8 +130,8 @@
 						th:formaction="@{|/product/uploadsp/${#request.remoteUser}/create|}">Create</button>
 					<button style="width: 100px;" type="submit" class="btn btn-success"
 						ng-click="update()">Update</button>
-					<button style="width: 100px;" class="btn btn-success"
-						th:formaction="@{|/product/uploadsp/${#request.remoteUser}|}">Reset</button>
+					<a style="width: 100px;" class="btn btn-success"
+						th:href="@{|/product/uploadsp/${#request.remoteUser}|}">Reset</a>
 				</div>
 			</form>
 		</div>

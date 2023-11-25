@@ -35,15 +35,15 @@ public class Account  implements Serializable{
 	@Email
 	String email;
 	String photo;
-	
+	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "account")
 	List<Order> orders;
-	
+	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
 	List<Authority> authorities;
-	
+	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "acc")
 	List<Product> products;

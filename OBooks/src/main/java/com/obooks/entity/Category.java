@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.ToString;
 @SuppressWarnings("serial")
 @Data
 @Entity 
@@ -20,6 +21,7 @@ public class Category implements Serializable{
 	@Id
 	String id;
 	String name;
+	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "category")
 	List<Product> products;
