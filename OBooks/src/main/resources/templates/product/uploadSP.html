@@ -69,9 +69,7 @@
 						<h3 class="mt-2 text-center fw-bolder">ĐĂNG SẢN PHẨM</h3>
 					</div>
 					<div class="card-body">
-						<div class="form-group col-sm-6">
-							<input type="text" th:field="*{acc}" class="form-control"/>
-						</div>
+						
 						<div class="row">
 							<div class="col-sm-4 text-center">
 								<label for="image"> <img
@@ -86,7 +84,7 @@
 											class="form-control" />
 									</div>
 									<div class="form-group col-sm-6">
-										<label>Giá</label> <input th:field="*{price}"
+										<label>Id</label> <input  th:field="*{acc}" 
 											class="form-control" />
 									</div>
 								</div>
@@ -96,14 +94,18 @@
 											class="form-control" id="image" th:field="*{image}">
 									</div>
 									<div class="form-group col-sm-6">
+										<label>Giá</label> <input th:field="*{price}"
+											class="form-control" />
+									</div>
+								</div>
+								<div class="row mt-3">
+										<div class="form-group col-sm-6">
 										<label>Thể loại</label> <select th:field="*{category}"
 											class="form-control">
 											<option th:each="item : ${listCate}" th:value=${item.id}
 												th:utext=${item.name}></option>
 										</select>
 									</div>
-								</div>
-								<div class="row mt-3">
 									<div class="form-group col-sm-6">
 										<label>Trạng thái</label>
 										<div class="form-control" style="border: none;">
