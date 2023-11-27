@@ -353,6 +353,7 @@ INSERT [dbo].[Authorities] ([Id], [Username], [RoleId]) VALUES (96, N'WILMK', N'
 INSERT [dbo].[Authorities] ([Id], [Username], [RoleId]) VALUES (97, N'WOLZA', N'CUST')
 INSERT [dbo].[Authorities] ([Id], [Username], [RoleId]) VALUES (98, N'director', N'DIRE')
 INSERT [dbo].[Authorities] ([Id], [Username], [RoleId]) VALUES (100, N'staff', N'STAF')
+INSERT [dbo].[Authorities] ([Id], [Username], [RoleId]) VALUES (101, N'hoang123', N'CUST')
 INSERT [dbo].[Authorities] ([Id], [Username], [RoleId]) VALUES (2103, N'director', N'STAF')
 INSERT [dbo].[Authorities] ([Id], [Username], [RoleId]) VALUES (7103, N'staff', N'CUST')
 INSERT [dbo].[Authorities] ([Id], [Username], [RoleId]) VALUES (7103, N'staff', N'CUST')
@@ -1632,3 +1633,5 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mã loại, FK
 GO
 
 select * from Products p where p.username like 'locpd' order by p.id desc
+
+drop table Products

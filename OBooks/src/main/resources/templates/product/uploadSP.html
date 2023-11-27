@@ -1,143 +1,83 @@
 <html xmlns:th="http://wwww.thymeleaf.org"
 	th:replace="~{/layout/index::dynamic(~{::main})}">
+
 <main>
-	<ul class="nav nav-pills mt-3 mb-3 justify-content-center me-4"
-		style="margin-left: 12px;" id="pills-tab" role="tablist">
-		<li class="nav-item" role="presentation">
-			<button class="nav-link active rounded-3" id="pills-profile-tab"
-				data-bs-toggle="pill" data-bs-target="#pills-profile" type="button"
-				role="tab" aria-controls="pills-profile" aria-selected="false">Sách
-				của tôi</button>
-		</li>
-		<li class="nav-item" role="presentation">
-			<button class="nav-link rounded-3" id="pills-home-tab"
-				data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
-				role="tab" aria-controls="pills-home" aria-selected="true">Đăng
-				sản phẩm</button>
-		</li>
-	</ul>
-	<div class="text-center fw-boler text-danger" th:utext="${message}"></div>
 	
-	<div class="tab-content mb-5" id="pills-tabContent">
-		<div class="tab-pane fade show active" id="pills-profile"
-			role="tabpanel" aria-labelledby="pills-profile-tab">
-			<div class="card">
-				<div class="card-header">
-					<h3 class="mt-2 text-center fw-bolder">DANH SÁCH SẢN PHẨM</h3>
-				</div>
-				<div class="card-body">
-					<table class="table table-bordered">
-						<thead class="bg-success text-white"
-							style="font-variant: small-caps;">
-							<tr>
-								<th>Ảnh</th>
-								<th>Tài khoản</th>
-								<th>Tên sách</th>
-								<th>Giá</th>
-								<th>Ngày đăng</th>
-								<th>Thể loại</th>
-								<th>Trạng thái</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="p:${listP}">
-								<td><img th:src="@{|/assets/images/${p.image}|}"
-									style="max-width: 100%" height="150px"></td>
-								<td th:utext="${p.acc.username}"></td>
-								<td th:utext="${p.name}"></td>
-								<td class="text-end" th:utext="${p.getFormattedPrice}"></td>
-								<td th:utext="${p.getFormattedCreatedate}"></td>
-								<td th:utext="${p.category.name}"></td>
-								<td th:utext="${p.available?'Yes':'No'}"></td>
-								<td class="text-center"><a
-									th:href="@{|/product/uploadsp/${#request.remoteUser}/edit/${p.id}|}"
-									class="btn btn-warning"> <i class="fa-solid fa-square-pen"></i>
-								</a></td>
-							</tr>
-						</tbody>
-					</table>
+
+	<form th:object="${product}" action="" method="POST">
+		<div class="card">
+			<div class="card-header">
+			<div class="row">
+				<div class="col-7 text-end h3 fw-bolder">Đăng sản phẩm</div>
+				<div class="col-5 text-end">
+					<a th:href="@{|/product/mybooks/${#request.remoteUser}|}" class="btn btn-success">Sách của tôi</a>
 				</div>
 			</div>
-
 		</div>
-		<div class="tab-pane fade" id="pills-home" role="tabpanel"
-			aria-labelledby="pills-home-tab">
-			<form th:object="${product}" action="" method="POST">
-				<div class="card">
-					<div class="card-header">
-						<h3 class="mt-2 text-center fw-bolder">ĐĂNG SẢN PHẨM</h3>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-4 text-center">
+						<label for="image"> <img id="preview-image"
+							th:src="@{|/assets/images/*{image}|}" style="max-width: 100%"
+							height="150px" />
+						</label>
 					</div>
-					<div class="card-body">
-						
+					<div class="col-sm-8">
 						<div class="row">
-							<div class="col-sm-4 text-center">
-								<label for="image"> <img
-									th:src="@{|/assets/images/*{image}|}" 
-									style="max-width: 100%" height="150px" />
-								</label>
+							<div class="form-group col-sm-6">
+								<label>Tên sách</label> <input th:field="*{name}"
+									class="form-control" />
 							</div>
-							<div class="col-sm-8">
-								<div class="row">
-									<div class="form-group col-sm-6">
-										<label>Tên sách</label> <input th:field="*{name}"
-											class="form-control" />
-									</div>
-									<div class="form-group col-sm-6">
-										<label>Id</label> <input  th:field="*{acc}" 
-											class="form-control" />
-									</div>
-								</div>
-								<div class="row mt-3">
-									<div class="form-group col-sm-6">
-										<label>Hình ảnh</label> <input type="file"
-											class="form-control" id="image" th:field="*{image}">
-									</div>
-									<div class="form-group col-sm-6">
-										<label>Giá</label> <input th:field="*{price}"
-											class="form-control" />
-									</div>
-								</div>
-								<div class="row mt-3">
-										<div class="form-group col-sm-6">
-										<label>Thể loại</label> <select th:field="*{category}"
-											class="form-control">
-											<option th:each="item : ${listCate}" th:value=${item.id}
-												th:utext=${item.name}></option>
-										</select>
-									</div>
-									<div class="form-group col-sm-6">
-										<label>Trạng thái</label>
-										<div class="form-control" style="border: none;">
-											<div class="form-check ps-0">
-												<input th:field="*{available}" class="form-check-input1"
-													name="available" th:value="true" type="radio"
-													id="inlineFormCheck"> <label
-													class="form-check-label" for="inlineFormCheck"> Yes
-												</label> <input th:field="*{available}"
-													class="form-check-input2 ms-2" name="available"
-													th:value="false" type="radio" id="inlineFormCheck2">
-												<label class="form-check-label" for="inlineFormCheck2">
-													No </label>
-											</div>
-										</div>
+							<div class="form-group col-sm-6">
+								<label>Id</label> <input th:field="*{acc}" class="form-control" />
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="form-group col-sm-6">
+								<label>Hình ảnh</label> <input type="file" class="form-control"
+									id="image" th:field="*{image}">
+							</div>
+							<div class="form-group col-sm-6">
+								<label>Giá</label> <input th:field="*{price}"
+									class="form-control" />
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="form-group col-sm-6">
+								<label>Thể loại</label> <select th:field="*{category}"
+									class="form-control">
+									<option th:each="item : ${listCate}" th:value=${item.id}
+										th:utext=${item.name}></option>
+								</select>
+							</div>
+							<div class="form-group col-sm-6">
+								<label>Trạng thái</label>
+								<div class="form-control" style="border: none;">
+									<div class="form-check ps-0">
+										<input th:field="*{available}" class="form-check-input1"
+											name="available" th:value="true" type="radio"
+											id="inlineFormCheck"> <label class="form-check-label"
+											for="inlineFormCheck"> Yes </label> <input
+											th:field="*{available}" class="form-check-input2 ms-2"
+											name="available" th:value="false" type="radio"
+											id="inlineFormCheck2"> <label
+											class="form-check-label" for="inlineFormCheck2"> No </label>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
-					<button style="width: 100px;" type="submit" class="btn btn-success"
-						th:formaction="@{|/product/uploadsp/${#request.remoteUser}/create|}">Create</button>
-					<button style="width: 100px;" type="submit" class="btn btn-success"
-						ng-click="update()">Update</button>
-					<a style="width: 100px;" class="btn btn-success"
-						th:href="@{|/product/uploadsp/${#request.remoteUser}|}">Reset</a>
-				</div>
-			</form>
+			</div>
 		</div>
-	</div>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+			<button style="width: 100px;" type="submit" class="btn btn-success"
+				th:formaction="@{|/product/uploadsp/${#request.remoteUser}/create|}">Thêm mới</button>
+			<button style="width: 100px;" type="submit" class="btn btn-success"
+				th:formaction="@{|/product/uploadsp/${#request.remoteUser}/update|}">Cập nhật</button>
+			<a style="width: 100px;" class="btn btn-success"
+				th:href="@{|/product/uploadsp/${#request.remoteUser}|}">Làm mới</a>
+		</div>
+	</form>
 </main>
-
 </html>

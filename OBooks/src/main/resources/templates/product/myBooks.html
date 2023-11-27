@@ -1,0 +1,49 @@
+<html xmlns:th="http://wwww.thymeleaf.org"
+	th:replace="~{/layout/index::dynamic(~{::main})}">
+
+<main>
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-7 text-end h3 fw-bolder">Sách của tôi</div>
+				<div class="col-5 text-end">
+					<a th:href="@{|/product/uploadsp/${#request.remoteUser}|}" class="btn btn-success">Đăng sản phẩm</a>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<table class="table table-bordered">
+				<thead class="bg-success text-white"
+					style="font-variant: small-caps;">
+					<tr>
+						<th>Ảnh</th>
+						<th>Tài khoản</th>
+						<th>Tên sách</th>
+						<th>Giá</th>
+						<th>Ngày đăng</th>
+						<th>Thể loại</th>
+						<th>Trạng thái</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p:${listP}">
+						<td><img th:src="@{|/assets/images/${p.image}|}"
+							style="max-width: 100%" height="150px"></td>
+						<td th:utext="${p.acc.username}"></td>
+						<td th:utext="${p.name}"></td>
+						<td class="text-end" th:utext="${p.getFormattedPrice}"></td>
+						<td th:utext="${p.getFormattedCreatedate}"></td>
+						<td th:utext="${p.category.name}"></td>
+						<td th:utext="${p.available?'Yes':'No'}"></td>
+						<td class="text-center"><a
+							th:attr="href=@{|/product/uploadsp/${#request.remoteUser}/edit/${p.id}|}"
+							class="btn btn-warning"> <i class="fa-solid fa-square-pen"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</main>
+</html>

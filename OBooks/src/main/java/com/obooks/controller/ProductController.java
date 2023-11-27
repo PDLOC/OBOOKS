@@ -19,12 +19,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.obooks.entity.Account;
 import com.obooks.entity.Category;
 import com.obooks.entity.Product;
+import com.obooks.service.ParamService;
 import com.obooks.service.Service_Category;
 import com.obooks.service.Service_Product;
+import com.obooks.service.Service_Upload;
 
 @Controller
 @RequestMapping("product")
@@ -33,7 +36,9 @@ public class ProductController {
 	private Service_Product productService;
 	@Autowired
 	private Service_Category categoryService;
-
+	@Autowired
+	private Service_Upload service_Upload;
+	
 	@GetMapping("list")
 	public String list(Model model, @RequestParam(value = "cid", defaultValue = "null") Optional<String> cid,
 			@RequestParam("page") Optional<Integer> p,
@@ -114,6 +119,17 @@ public class ProductController {
 		return "product/detail";
 	}
 
+	@GetMapping("mybooks/{uname}")
+	public String mybooks(Model model, @PathVariable("uname") String username) {
+		Product item = new Product();
+		model.addAttribute("product", item);
+		List<Category> listcate = categoryService.findAll();
+		model.addAttribute("listCate", listcate);
+		List<Product> listProduct = productService.findByUsername(username);
+		model.addAttribute("listP", listProduct);
+		return "product/myBooks";
+	}
+
 	@GetMapping("uploadsp/{uname}")
 	public String up(Model model, @PathVariable("uname") String username) {
 		Product item = new Product();
@@ -124,7 +140,7 @@ public class ProductController {
 		model.addAttribute("listP", listProduct);
 		return "product/uploadSP";
 	}
-
+	
 	@PostMapping("uploadsp/{uname}/create")
 	public String upProduct(Model model, @PathVariable("uname") String username,
 			@ModelAttribute("product") Product product) {
@@ -132,6 +148,13 @@ public class ProductController {
 		return "redirect:/product/uploadsp/" + username;
 	}
 
+	@PostMapping("uploadsp/{uname}/update")
+	public String updateProduct(Model model, @PathVariable("uname") String username,
+			@ModelAttribute("product") Product product) {
+		productService.update(product);
+		return "redirect:/product/uploadsp/" + username;
+	}
+	
 	@GetMapping("/uploadsp/{uname}/edit/{id}")
 	public String edit(Model model, @PathVariable("uname") String username, @PathVariable("id") Integer id) {
 		Product p = productService.findById(id);

@@ -17,7 +17,7 @@ public class ServiceImpl_Product implements Service_Product{
 
 	@Override
 	public List<Product> findAll() {
-		return pDao.findAll();
+		return pDao.findAllDESC();
 	}
 
 	@Override

@@ -6,6 +6,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/assets/admin/product/index.html",
 			controller: "product-ctrl"
 		})
+		.when("/theloai", {
+			templateUrl: "/assets/admin/theloai/index.html",
+			controller: "theloai-ctrl"
+		})
 		.when("/order", {
 			templateUrl: "/assets/admin/hoadon/index.html",
 			controller: "hoadon-ctrl"
